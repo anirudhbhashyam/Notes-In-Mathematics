@@ -1,0 +1,16 @@
+# LATEX FILES.
+*.aux
+*.bcf
+*.log
+*.run.xml
+*.out
+*.toc
+
+# BIBLATEX FILES.
+*.blg
+*.bbl
+/proposal/*.bib
+
+# SHELL FILES.
+*.sh
+

@@ -1,0 +1,139 @@
+% ----------------------------------------------------------------
+% -- PACKAGES -- %
+% ----------------------------------------------------------------
+% Import graphics.
+\usepackage{graphicx}
+
+% Page settings.
+\usepackage[margin = 1.2in, showframe]{geometry}
+
+% LaTeX figure placing.
+\usepackage{subcaption}
+\usepackage{float}
+
+% Special tables.
+\usepackage{longtable}
+\usepackage{chngpage}
+
+\usepackage{enumitem}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{mathrsfs}
+
+% Figures and plotting.
+\usepackage{pstricks}
+\usepackage{multido}
+\usepackage{pst-plot}
+
+% Fonts.
+\usepackage{fontspec}
+
+% Titling.
+\usepackage{titling}
+\renewcommand\maketitlehooka{\null\mbox{}\vfill}
+\renewcommand\maketitlehookd{\vfill\null}
+
+% Headers.
+% \usepackage{fancyhdr}
+
+
+% Links.
+\usepackage[colorlinks = true]{hyperref}
+
+% ---------------------------------------------------------------- %
+% -- FONTS -- %
+% ---------------------------------------------------------------- %
+\usepackage[T1]{fontenc}
+% \usepackage[bitstream-charter]{mathdesign}
+\setmainfont{ACaslonPro-Regular}
+\defaultfontfeatures{
+    Path = ~/Library/Fonts/,
+    Extension = .otf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+}
+  
+% ---------------------------------------------------------------- %
+% -- TITLING -- %
+% ---------------------------------------------------------------- %
+\title
+{   
+    % \begin{center}
+    %     \includegraphics[width = 40mm]{Images/LOGON.eps}
+    % \end{center}
+    \vspace{-50pt}
+    \huge \textbf{N O T E S\;\;I N\;\;M A T H E M A T I C S}
+}
+\author{Anirudh Bhashyam}
+\date{}
+
+% ---------------------------------------------------------------- %
+% -- HEADERS -- %
+% ---------------------------------------------------------------- %
+% \pagestyle{fancy}
+% \fancyhf{}
+% \rhead{\small Neer Treatment Solutions Pvt. Ltd\\
+% \small Email: contactus@neerglobal.com\\
+% \small CIN: U74999DL2020PTC362727}
+% \lhead{\includegraphics[width = 20mm]{Images/12.eps}}
+% \rfoot{\thepage}
+
+% ---------------------------------------------------------------- %
+% --- COMMANDS --- %
+% ---------------------------------------------------------------- %
+
+% -- Theorem Environment Settings -- %
+\definecolor{thmcolor}{RGB}{142, 50, 1}
+\newtheoremstyle{thmstyle}{}{}{\color{thmcolor}}{}{\color{thmcolor}\bfseries}{}{ }{}
+\theoremstyle{thmstyle}
+\newtheorem{thm}{Theorem}[section]
+
+% -- Proof Environment Settings -- %
+\definecolor{proofcolor}{RGB}{209, 134, 6}
+\let\oldproof\proof
+\renewcommand{\proof}{\color{proofcolor}\oldproof}
+
+% -- Defintion Environment Settings -- %
+\definecolor{defncolor}{RGB}{23, 20, 119}
+\newtheoremstyle{defnstyle}{}{}{\color{defncolor}}{}{\color{defncolor}\bfseries}{}{ }{}
+\theoremstyle{defnstyle}
+\newtheorem{defn}[thm]{Definition}
+\newcommand{\defnref}[1]{{\color{defncolor} Defintion #1}}
+
+%  -- Example Environment Settings -- %
+\definecolor{exmpcolor}{RGB}{0, 112, 72}
+\newtheoremstyle{exmpstyle}{}{}{\color{exmpcolor}}{}{\color{exmpcolor}\bfseries}{}{ }{}
+\theoremstyle{exmpstyle}
+\newtheorem{exmp}{Example}[section]
+\newcommand{\exmpref}[1]{{\color{exmpcolor} Example #1}}
+
+%  -- Math Commands -- %
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\innerprod}[2]{\left\langle #1,\;#2 \right\rangle}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+
+% -- Dirac Notation -- %
+\newcommand{\bra}[1]{\left\langle #1 \right\rvert}
+\newcommand{\ket}[1]{\left\lvert #1 \right\rangle}
+\newcommand{\braket}[2]{\left\langle #1 \vert #2 \right\rangle}
+\newcommand{\ketbra}[2]{\left\lvert #1 \times #2 \right\rvert}
+
+% -- Circuits -- %
+\newcommand{\hadamardn}[1]{H^{\otimes #1}}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+
+% ---------------------------------------------------------------- %
+% --- PSTRICKS OBJECTS --- %
+% ---------------------------------------------------------------- %
+
+

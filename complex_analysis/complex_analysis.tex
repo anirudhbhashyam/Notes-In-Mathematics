@@ -1,0 +1,1436 @@
+% !TEX program = XeLaTex
+\documentclass[12pt]{book}
+
+\input{../frontend/fe.tex}
+
+\begin{document}
+    \begin{titlingpage}
+        \maketitle
+    
+        \vspace{-50pt}
+        \begin{center}
+            \Large C O M P L E X\;\;A N A L Y S I S 
+        \end{center}
+    \end{titlingpage}
+
+\tableofcontents
+
+\chapter{Complex Numbers}
+\section{Roots of Complex Numbers}
+It is an interesting question to ask as to what the $n-$th roots of complex numbers are. After all, the basis of definition of the complex numbers is that they are numbers that can be expressed as a sum of real and imaginary parts. With the imaginary part being constituted of $i = \sqrt{-1}.$ To understand the notion of such roots we must define what it means for complex numbers to be equal (in the sense of their polar notation). In standard notation, it would boil down to the fact that the real and imaginary parts of a complex number are equal.
+
+\begin{defn}[Equality of Complex Numbers]
+    Two complex numbers $z_1 = r_1e^{i\theta_{1}}$ and $z_2 = r_2e^{i\theta_{2}}$ are equal if and only if $r_1 = r_2$ and $\theta_{1} = \theta_{2} + 2\pi k$, where $k \in \mathbb{Z}$.
+\end{defn}
+
+That is to say, in the Argand (complex) plane, going around by a multiple of $2\pi$, provided that $r$ stays the same, yields the same complex number. This simple principle can be used to express what we are trying to delineate. Suppose, we wish to find $z = r e^{i\theta} \in \mathbb{C}$ such that it is the answer to the expression $\sqrt[n]{r_0 e^{i\theta_{0}}}.$ In other words,
+\[
+    (r e^{i\theta})^{n} = r_0 e^{i\theta_{0}}.
+\]  
+Since, we know when complex numbers are equal, we can say that the expression above leads to the conclusion that (using \textit{De Moivre's theorem})
+\[
+    r^{n} = r\;\;\text{and}\;\; n\theta = \theta_{0} + 2\pi k,
+\]
+where $k \in \mathbb{Z}.$ This permits us to write the root $z$ as 
+\[
+    z = \sqrt[n]{r_0} e^{i\left(\frac{\theta_{0}}{n} + \frac{2\pi k}{n}\right)}.
+\]
+If we are to be precise, after $k \geq n$, the expression $(2\pi k) / n$ will reduce to a form $(2 \pi k') /n,$ where $k' \in \mathbb{Z}^{+}_{n}.$ Which reduces the number of possible roots to $n$, which agrees with the \textit{Fundamental Theorem of Algebra}. Since, we are restricted to the integers when using \textit{De Moivre's theorem}, we require other tools to make meaningful assumptions about complex powers, which we will see later.
+
+\begin{exmp}
+    $(-8i)^{1/3}.$
+\end{exmp}
+\begin{align*}
+    (-8i)^{1/3} 
+        &=
+            (8e^{i(-\pi/2)})^{1/3} \\
+        &=
+            2 e^{i\left(-\frac{\pi}{6} + \frac{2\pi k}{3}\right)},
+\end{align*}
+where $k = 0, 1, 2.$
+
+\begin{exmp}
+    $1^{1/n}, n \in \mathbb{Z}$.
+\end{exmp}
+\begin{align*}
+    (1)^{1/n} 
+        &=
+            (e^{i 0})^{1/n} \\
+        &=
+            e^{i\left(\frac{2\pi k}{n}\right)},
+\end{align*}
+where $k = {0, 1, 2, \dots, n - 1}$.
+
+\begin{figure}[H]
+    \centering
+    \begin{figure}[H]
+        \begin{subfigure}{0.45\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{./figs/chapter_1/Complex_roots_1_n3.eps}
+            \caption{$n = 3$}
+        \end{subfigure}
+        \qquad
+        \begin{subfigure}{0.45\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{./figs/chapter_1/Complex_roots_1_n4.eps}
+            \caption{$n = 4$}
+        \end{subfigure}
+    \end{figure}
+    \caption{Complex roots of 1 in the plane.}
+\end{figure}
+
+In fact, the $n-$th roots of a complex number form a cyclic polygon who's roots lie on a circle centred at the origin with radius $\sqrt[n]{r}.$
+
+\section{Complex Collections}
+Regions in the complex plane are of utmost important to the current study. Regions vary both in shape and abstract concepts of inclusion. We shall describe this in detail below. Technically, this section is a special case of applying topology to the complex plane but that is not of too much concern here. To begin with, we shall first define a metric that will be used to study distances in the complex plane.
+
+\begin{defn}[Standard Distance Metric]
+    Let $d: \mathbb{C} \times \mathbb{C} \rightarrow \mathbb{R}$ be defined as
+    \[
+        d(z_1, z_2) := |z - z_{0}| = \sqrt{(z_1 - z_2)^2}.
+    \]
+    Then, $(\mathbb{C}, d)$ is a metric space.
+\end{defn}
+It can of course be shown that $d$ is a metric on $\mathbb{C}$ but we consider it to be so for the sake of brevity. The first concept that we must familiarise ourselves with is that of a neighbourhood. In the real numbers a neighbourhood is merely an interval around a given number in the complex plane it is substantially different. 
+
+\begin{defn}[$\epsilon-$Neighbourhood]
+    Let $\epsilon > 0$ and $z_{0} \in \mathbb{C}.$ Then, the $\epsilon$ neighbourhood of $z_{0}$ is defined as the set of complex numbers 
+    \[
+        S(z_0, \epsilon) = \{z \in \mathbb{C}\; |\; d(z, z_0) < \epsilon\}.
+    \]
+\end{defn}
+
+Given that this is indeed a neighbourhood, we now move on to see what it means for point to lie inside, outside or on the boundary (if it exists) of a such a region.
+
+\begin{defn}[Interior Point]
+    Let $z \in X \subseteq \mathbb{C}.$ Then, $z$ is an interior point of $X$ iff
+    \[
+        \exists\; \epsilon > 0: S(z, \epsilon) \subseteq X.
+    \]
+\end{defn}
+
+\begin{defn}[Exterior Point]
+    Let $z \in X \subseteq \mathbb{C}.$ Then, $z$ is an exterior point of $X$ iff
+    $$
+        \exists\; \epsilon > 0: S(z, \epsilon) \cap X = \phi.
+    $$
+\end{defn}	
+
+\begin{defn}[Boundary Point]
+    Let $z \in X \subseteq \mathbb{C}.$ Then, $z$ is a boundary point of $X$ iff
+    $$
+        \exists\; \epsilon > 0\; \land \; z_1 \in X \land z_2 \in \mathbb{C}\backslash X:
+            z_1, z_2 \in S(z, \epsilon).
+    $$
+\end{defn}
+Geometrically these definitions only seek to succinctly convey that a point is inside or outside a region. If an $\epsilon-$neighbourhood around that point exists, which lies either completely inside or completely outside the region, respectively. The boundary point defintion captures the fact that a point is on the boundary of a region when an $\epsilon$-neighbourhood contains both points within $X$ and outside $X$. These definitions allow us to simplify the notion of open and closed regions (general concepts from topology) in the context of the complex plane. 
+
+\begin{defn}[Open Set]
+    A set $X \subseteq \mathbb{C}$ is open iff
+    $$
+        \forall\; x \in X: x\;\text{ is an interior point}.
+    $$
+\end{defn}
+
+\begin{defn}[Closed Set]
+    A set $X \subseteq \mathbb{C}$ is closed iff
+    $$
+        \forall\; x \in X: x\;\text{ is an exterior point}.
+    $$
+\end{defn}
+
+\begin{defn}[Connected Set]
+    A set $X \subseteq \mathbb{C}$ is connected if for each pair of numbers $z_1, z_2 \in X$ there exists a polygonal line contained in $X$ that connects $z_1$ and $z_2$.
+\end{defn}
+
+\begin{defn}[Domain]
+    A non-empty set $X \subseteq \mathbb{C}$ which is open and connected. 
+\end{defn}
+
+\begin{defn}[Bounded]
+    A set $X \subset \mathbb{C}$ is bounded iff
+    $$
+        \exists\; \epsilon > 0: X \subseteq \{z \in \mathbb{C}\; |\; |z| = \epsilon\}.
+    $$
+\end{defn}
+
+Connectedness is a much more abstact concept in topology but for the complex plane it is sufficient to view it in the given sense. Boundedness of a set will become increasingly important once we start defining functions on complex sets and see their behaviour.
+
+\begin{exmp}
+    $|z - 2 + i| \leq 1.$
+\end{exmp}
+In the complex plane, the above region looks as follows. It is closed, connected and bounded. Note that it is not a domain.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.7]{./figs/chapter_1/region_plot_1.eps}
+    \caption{A region in the complex plane.}
+\end{figure}
+
+\begin{exmp}
+    $|2z + 3| \geq 4.$
+\end{exmp}
+In the complex plane, the above region looks as follows. It is open, connected and unbounded.This region forms a domain.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.7]{./figs/chapter_1/region_plot_2.eps}
+    \caption{A region in the complex plane.}
+\end{figure}
+
+
+\begin{exmp}
+    $0 \leq arg[z] \leq \pi / 4 (z \neq 0).$
+\end{exmp}
+In the complex plane, the above region looks as follows. It is neither open nor closed, connected and unbounded. This region does not form a domain.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.7]{./figs/chapter_1/region_plot_3.eps}
+    \caption{A region in the complex plane.}
+\end{figure}
+
+
+\begin{exmp}
+    $|z - 4| \geq |z|.$
+\end{exmp}
+In the complex plane, the above region looks as follows. It is closed, connected and unbounded.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.7]{./figs/chapter_1/region_plot_4.eps}
+    \caption{A region in the complex plane.}
+\end{figure}
+
+\chapter{Functions}
+\section{Mappings}
+In this chapter, we will concern ourselves with mappings of the form $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}.$ The premise is that such functions can be broken into two parts. One where the real part of the input is mapped to the real part of the output and the other where the imaginary part of the input is mapped to the imaginary part of the output. If we let $z \in X$ and  $w \in \mathbb{C}$ such that $f(z) = w,$ where $z = x + iy$ and $w = u + iv$, then it naturally emerges that
+
+\begin{align*}
+    &&f(z) 
+        &= w \\
+    &\Rightarrow &f(x + iy) 
+        &= u + iv \\
+\end{align*}
+
+In fact $u$ and $v$ are real valued functions, that in general follow $u, v: \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}$ and are parametrised by $x$ and $y$ as $u = u(x, y)$ and $v = v(x, y)$. If we choose to write the complex numbers $z$ and $w$ in polar form, we will get the functions parametrised by the $r$ and $\theta$, the absolute value and the argument. We now take a look at some examples, to observe this complex and real mappings much like how complex numbers are constructed using real numbers. For now, we will take a loot at polynomial-like expressions as we still don't know how complex exponentials or trigonometric functions behave.
+
+\begin{exmp}
+    $f(z) = z^2.$
+\end{exmp}
+We have,
+\begin{align*}
+    &&f(z) 
+        &= z^2 \\
+    &\Rightarrow &f(x + iy) 
+        &= x^2 - y^2 + 2ixy .
+\end{align*}
+Therefore, $u(x, y) = x^2 - y^2$ and $v(x, y) = 2xy.$
+
+\begin{exmp}
+    $f(z) = |z|^2.$
+\end{exmp}
+We have,
+\begin{align*}
+    &&f(z) 
+        &= |z|^2 \\
+    &\Rightarrow &f(x + iy) 
+        &=  x^2 + y^2.
+\end{align*}
+Therefore, $u(x, y) = x^2 + y^2$ and $v(x, y) = 0.$
+
+\begin{exmp}
+    $f(z) = z^3 + z + 1.$
+\end{exmp}
+We have,
+\begin{align*}
+    &&f(z) 
+        &= z^3 + z + 1\\
+    &\Rightarrow &f(x + iy) 
+        &= x^3 - 3xy^2 + x + 1 + i(-y^3 + 3x^2y + y).
+\end{align*}
+Therefore, $u(x, y) = x^3 - 3xy^2 + x + 1$ and $v(x, y) = -y^3 + 3x^2y + y.$
+
+\begin{exmp}
+    $f(x + iy) = x^2 - y^2 - 2y + i(2x - 2xy).$
+\end{exmp}
+We find that $u(x, y) = x^2 - y^2 - 2y$ and $v(x, y) = 2x - 2xy.$
+\begin{align*}
+    &&f(x + iy) 
+        &= x^2 - y^2 - 2y + i(2x - 2xy)\\
+    &\Rightarrow &f(x + iy) 
+        &= (x - iy)^2 + 2i(x + iy) \\
+    &\Rightarrow &f(z)
+        &= \overline{z}^{2} + 2iz.
+\end{align*}
+
+\begin{exmp}
+    $f(z) = z + 1 / z.$
+\end{exmp}
+We have,
+\begin{align*}
+    &&f(r, \theta) 
+        &= re^{i\theta} + \frac{1}{r}e^{-i\theta}\\
+    &\Rightarrow &f(r, \theta)
+        &= \left(r + \frac{1}{r}\right)\cos\theta + i\left(r - \frac{1}{r}\right)\sin\theta.
+\end{align*}
+Therefore, $u(r, \theta) = \left(r + \frac{1}{r}\right)\cos\theta$ and $v(r, \theta) = \left(r - \frac{1}{r}\right)\sin\theta.$
+
+Now, we can extend this notion of writing complex functions in different forms to viewing them as transformations between the planes $xy$ and $uv$. 
+
+\begin{exmp}
+    $f(z) = w = z^2.$
+\end{exmp}
+We have seen that the above function can be broken down into the constituents
+$$
+    u(x, y) = x^2 - y^2\; \text{and}\; v(x, y) = 2xy,
+$$
+where $z = x + iy.$ We can now study contours of these functions as they are transformed between the planes $xy$ and $uv$.
+\begin{enumerate}
+    \item $u = c_1, (c_1 > 0).$
+    \begin{enumerate}[label = {(\roman*)}]
+        \item 
+            $v = 2y\sqrt{y^2 + c_1}, (\infty < y < \infty).$
+            \begin{figure}[H]
+                \centering
+                \begin{subfigure}{0.45\textwidth}
+                    \centering
+                    \includegraphics[width = \textwidth]{./figs/chapter_1/f_map_1_1.eps}
+                    \caption{$xy$-plane}
+                \end{subfigure}
+                \qquad
+                \begin{subfigure}{0.45\textwidth}
+                    \centering
+                    \includegraphics[width = \textwidth]{./figs/chapter_1/f_map_1_2.eps}
+                    \caption{$uv$-plane}
+                \end{subfigure}
+                \caption{$c_1 = 2.$}
+            \end{figure}
+        \item 
+            $v = -2y\sqrt{y^2 + c_1}, (\infty < y < \infty).$
+            \begin{figure}[H]
+                \centering
+                \begin{subfigure}{0.45\textwidth}
+                    \centering
+                    \includegraphics[width = \textwidth]{./figs/chapter_1/f_map_2_1.eps}
+                    \caption{$xy$-plane}
+                \end{subfigure}
+                \qquad
+                \begin{subfigure}{0.45\textwidth}
+                    \centering
+                    \includegraphics[width = \textwidth]{./figs/chapter_1/f_map_2_2.eps}
+                    \caption{$uv$-plane}
+                \end{subfigure}
+                \caption{$c_1 = 2.$}
+            \end{figure}
+    \end{enumerate}
+    
+    \item $v = c_2, (c_2 > 0).$
+    \begin{enumerate}[label = {(\roman*)}]
+        \item 
+            $u = \frac{c_{2}^{2}}{4y^2} - y^2, (\infty < y < 0).$
+            \begin{figure}[H]
+                \centering
+                \begin{subfigure}{0.45\textwidth}
+                    \centering
+                    \includegraphics[width = \textwidth]{./figs/chapter_1/f_map_1_3.eps}
+                    \caption{$xy$-plane}
+                \end{subfigure}
+                \qquad
+                \begin{subfigure}{0.45\textwidth}
+                    \centering
+                    \includegraphics[width = \textwidth]{./figs/chapter_1/f_map_1_4.eps}
+                    \caption{$uv$-plane}
+                \end{subfigure}
+                \caption{$c_2 = 2.$}
+            \end{figure}
+        \item
+            $u = x^2 - \frac{c_{2}^{2}}{4x^2}, (0 < x < \infty).$
+            \begin{figure}[H]
+                \centering
+                \begin{subfigure}{0.45\textwidth}
+                    \centering
+                    \includegraphics[width = \textwidth]{./figs/chapter_1/f_map_2_3.eps}
+                    \caption{$xy$-plane}
+                \end{subfigure}
+                \qquad
+                \begin{subfigure}{0.45\textwidth}
+                    \centering
+                    \includegraphics[width = \textwidth]{./figs/chapter_1/f_map_2_4.eps}
+                    \caption{$uv$-plane}
+                \end{subfigure}
+                \caption{$c_2 = 2.$}
+            \end{figure}
+    \end{enumerate}
+\end{enumerate}
+
+\section{Limiting Processes}
+\subsection{Limits}
+As in the real numbers it is paramount that we understand limiting processes, to devise methods to study properties of complex mappings. In the plane, the complex limit is similar to that of a two dimensional limit approaching a point.
+
+\begin{defn}[Limit Point]
+    Let $x \in X \subseteq \mathbb{C}$, then $x$ is a limit point of $X$ iff
+    $$
+        \forall \epsilon > 0, \exists y \in X: y \neq x \land y \in S(x, \epsilon).
+    $$
+\end{defn}
+Which is to say a limit point contains points of the concerned set other than itself in every neighbourhood. Limit definitions will now be assumed to be for such limit points. It's interesting to ask what happens when limiting processes are examined relating to points that do not share this property. Well then the definiton for a limit is directly contradicted because it doesn't work for all $\epsilon.$
+
+\begin{defn}[Limit]
+    Let $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C},$ then $\lim_{z \rightarrow z_0} f(z) = w (\in \mathbb{C})$ iff $\forall\; \epsilon > 0\; \exists\; \delta(\epsilon) > 0:$
+    $$
+        0 < d(z, z_0) < \delta(\epsilon) \Rightarrow d(f(z), w) < \epsilon,
+    $$ 
+    assuming that $z $
+\end{defn}
+In the following discussion, I will ommit making it explicit that $\delta$ is a function of $\epsilon.$ As for now, it is clear. The above definition can of course delineated as $\lim_{z \rightarrow z_0} f(z) = w (\in \mathbb{C})$ iff $\forall\; \epsilon > 0\; \exists\; \delta > 0:$
+$$
+    z \in S(z_0, \delta) \Rightarrow f(z) \in S(w, \epsilon).
+$$  
+This lends to the visualisation.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width = \textwidth]{./figs/chapter_1/limits_def_2.eps}
+        \caption{$xy$-plane}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width = \textwidth]{./figs/chapter_1/limits_def_1.eps}
+        \caption{$uv$-plane}
+    \end{subfigure}
+    \caption{$c_2 = 2.$}
+\end{figure}
+
+Keeping in line with our previous breakdown of complex functions into constituent parts, we can now use the above definition to define the existence of the complex limit using the real and imaginary function parts. In fact, this will allow us to use other properties of functions by referring to the constituent parts of the complex function.
+
+\begin{thm}[Part Limits]
+    Suppose that $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ is a complex function, let $f(z) = u(x, y) + iv(x, y),$ where $z = x + iy$, $z_0 = x_0 + iy_0$, and $w_0 = u_0 + iv_0,$ where $u_0 = u(x_0, y_0)$ and $u_0 = u(x_0, y_0)$. Then, 
+    $$
+        \lim_{z \rightarrow z_0} f(z) = w_0
+    $$ 
+    iff 
+    $$
+        \lim_{(x, y) \rightarrow (x_0, y_0)} u(x, y) = u_0\; \text{and}\; \lim_{(x, y) \rightarrow (x_0, y_0)} v(x, y) = v_0.
+    $$
+\end{thm}
+\begin{proof}
+    $\mathbf{[\Rightarrow]}$ Assume that $\lim_{z \rightarrow z_0} f(z) = w_0.$ Then, by definiton, $\forall \epsilon > 0\; \exists\; \delta > 0:$
+    $$
+       0 < d(z, z_0) < \delta \Rightarrow d(f(z), w_0) < \epsilon.
+    $$
+    This implies that 
+    $$
+        \abs{(x - x_0) + i(y - y_0)} < \delta \Rightarrow \abs{(u(x, y) - u_0) + i(v(x, y) - v_0)} < \epsilon.
+    $$
+    Now, 
+    $$
+        \abs{Re(u(x, y) - u_0 + i(v(x, y) - v_0))} \leq \abs{u(x, y) - u_0 + i(v(x, y) - v_0))}
+    $$
+    and 
+    $$
+        \abs{Im(u(x, y) - u_0 + i(v(x, y) - v_0))} \leq \abs{u(x, y) - u_0 + i(v(x, y) - v_0))}.
+    $$
+    Whenever $0 < \sqrt{(x - x_0)^2 + (y - y_0)^2} < \delta$, we have
+    $$
+        \abs{(u(x, y) - u_0)} < \epsilon
+    $$
+    and 
+    $$
+        \abs{(v(x, y) - v_0)} < \epsilon.
+    $$
+    Hence,
+    $$
+        \lim_{(x, y) \rightarrow (x_0, y_0)} u(x, y) = u_0\; \text{and}\; \lim_{(x, y) \rightarrow (x_0, y_0)} v(x, y) = v_0.
+    $$
+
+    $\mathbf{[\Rightarrow]}$ For the converse, assume that $\lim_{(x, y) \rightarrow (x_0, y_0)} u(x, y) = u_0\; \text{and}\; \lim_{(x, y) \rightarrow (x_0, y_0)} v(x, y) = v_0.$ Then, $\forall\; \epsilon > 0$:
+    $$
+        \exists\; \delta: 0 < \sqrt{(x - x_0)^2 + (y - y_0)^2} < \delta_1 \Rightarrow d(u(x, y), u_0) < \epsilon / 2
+    $$
+    and
+    $$
+        \exists\; \delta: 0 < \sqrt{(x - x_0)^2 + (y - y_0)^2} < \delta_2 \Rightarrow d(v(x, y), v_0) < \epsilon / 2.
+    $$ 
+    If we are to choose, $\delta = \min(\delta_1, \delta_2),$ then 
+    \begin{align*}
+        \abs{f(z) - w_0}
+            &=
+                \abs{u + iv - (u_0 + iv_0)} \\
+            &= 
+                \abs{u - u_0 + i(v - v_0)} \\
+            &\leq
+                \abs{u - u_0} + \abs{v - v_0} \\
+            &\leq
+                \epsilon.
+    \end{align*}
+    Which leads to the conclusion that 
+    $$
+        \lim_{z \rightarrow z_0} f(z) = w_0
+    $$
+    This closes the proof.
+\end{proof}
+
+\begin{thm}[Uniqueness of Limits]
+    If the limit of a function $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ exists at some point $z_0,$ then it is unique.
+\end{thm}
+\begin{proof}
+    We assume that the limit is not unique for the purposes of arriving at a contradiction. Specifically, let 
+    $$
+        \lim_{z \rightarrow z_0} f(z) = w_1, w_2, (w_1 \neq w_2).
+    $$
+    Then, by defintion $\forall\; \epsilon > 0$
+        $$
+            \exists \delta > 0: 0 < d(z, z_0) < \delta \Rightarrow d(f(z), w_1) < \epsilon / 2,
+        $$
+        $$
+            \exists \delta > 0: 0 < d(z, z_0) < \delta \Rightarrow d(f(z), w_2) < \epsilon / 2.
+        $$
+    Then, by the triangle inequality
+        \begin{align*}
+            d(w_1, w_2)
+                &\leq 
+                    d(f(z), w_1) + d(f(z), w_2) \\
+                &\leq
+                    \epsilon / 2 + \epsilon / 2 \\
+                &\leq
+                    \epsilon.
+        \end{align*}
+    Which contradicts the fact that $w1 \neq w_2$ as $w_1$ and $w_2$ cannot be arbitrarily close to each other. This closes the proof.
+\end{proof}
+
+\begin{exmp}
+    $\lim_{z \rightarrow 1} \frac{i\overline{z}}{3} = \frac{i}{3}, (|z| < 1).$
+\end{exmp}
+\begin{align*}
+    d\left(f(z), \frac{i}{3}\right)
+        &=
+            d\left(\frac{i\overline{z}}{3}, \frac{i}{3}\right) \\
+        &=
+            \abs{\frac{i}{3}}d(\overline{z}, 1) \\
+        &=
+            \frac{1}{3}d(z, 1).
+\end{align*}
+Therefore, if we choose $\delta(\epsilon) := 3\epsilon$, then the condition $d(z, 1) < \delta$ enforces that $d(f(z), i / 3) < \epsilon.$  
+
+\begin{exmp}
+    $\lim_{z \rightarrow 0}\frac{z}{\overline{z}}$ does not exist.
+\end{exmp}
+We can see this fact by taking the limit approaching from different directions. For the first we set $z = x + i0.$ Then,
+\begin{align*}
+    \lim_{z \rightarrow x + i0} \frac{z}{\overline{z}}
+        &= 
+            \lim_{x \rightarrow 0} \frac{x}{x} \\
+        &= 
+            1.
+\end{align*}
+We now set $z = 0 + iy.$ Then,
+\begin{align*}
+    \lim_{z \rightarrow 0 + iy} \frac{z}{\overline{z}}
+        &= 
+            \lim_{y \rightarrow 0} \frac{y}{-y} \\
+        &= 
+            -1.
+\end{align*}
+Which implies that the limit does not exist. As the limit from any given direction of approach must be consistent.
+
+\begin{exmp}
+    $$
+        \lim_{z \rightarrow z_0} Re(z) = Re(z_0).
+    $$
+\end{exmp}
+\begin{align*}
+    d(Re(z), Re(z_0)) 
+        &\leq
+            d(z, z_0) \\
+\end{align*}
+Therefore, if we choose $\delta(\epsilon) := \epsilon$, then the condition $d(z, z_0) < \delta$ enforces that $d(Re(z), Re(z_0)) < \epsilon.$  
+
+\begin{exmp}
+    $$
+        \lim_{z \rightarrow z_0} \overline{z} = \overline{z_0}.
+    $$
+\end{exmp}
+\begin{align*}
+    d(\overline{z}, \overline{z_0}) 
+        &\leq
+            d(z, z_0) \\
+\end{align*}
+Therefore, if we choose $\delta(\epsilon) := \epsilon$, then the condition $d(z, z_0) < \delta$ enforces that $d(Re(z), Re(z_0)) < \epsilon.$ 
+
+\begin{exmp}
+    $$
+        \lim_{z \rightarrow z_0} \frac{\overline{z}^{2}}{z} = 0.
+    $$
+\end{exmp}
+\begin{align*}
+    d\left(\frac{\overline{z}^{2}}{z}, 0\right) 
+        &=
+           \abs{\frac{\overline{z}^{2}}{z}} \\
+        &= 
+            \frac{\abs{\overline{z}^{2}}}{\abs{z}} \\
+        &=
+            \abs{z}.
+\end{align*}
+Therefore, if we choose $\delta(\epsilon) := \epsilon$, then the condition $d(z, z_0) < \delta$ enforces that $d\left(\frac{\overline{z}^{2}}{z}, 0\right) < \epsilon.$ 
+
+\begin{exmp}
+    $$
+        \lim_{z \rightarrow z_0} z^2 + c = z_{0}^{2} + c.
+    $$
+\end{exmp}
+\begin{align*}
+    d\left(z^2 + c, z_{0}^{2} + c\right) 
+        &=
+           d(z^{2}, z_{0}^{2}) \\
+        &= 
+            \abs{z + z_0}\abs{z - z_0} \\
+        &\leq
+            (\abs{z} + \abs{z_0})\abs{z - z_0}.
+\end{align*}
+If we choose $\abs{z - z_0} < 1,$ then
+$$
+    \abs{z} - \abs{z_0} \leq \abs{\abs{z} - \abs{z_0}} \leq \abs{z - z_0} \leq 1.
+$$
+We get that, $\abs{z} \leq 1 + \abs{z_0}.$ Finally,
+$$
+    d\left(z^2 + c, z_{0}^{2} + c\right) \leq (1 +2 \abs{z_0}) \abs{z - z_0}.
+$$
+Therefore, if we choose $\delta(\epsilon) := \min(1, \epsilon / (1 + 2|z_0|))$, then the condition $d(z, z_0) < \delta$ enforces that $d\left(z^2 + c, z_{0}^{2} + c\right)  < \epsilon.$ 
+
+We finally see the familiar limit properties. 
+\begin{thm}[Limit Properties]
+    Suppose that $f, g: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ and $\lim_{z \rightarrow z_0}f(z) = w_1,$ $\lim_{z \rightarrow z_0}g(z) = w_2,$ where $w_1, w_2 \in \mathbb{C}$ and $w_1, w_2 < \infty.$ Then,
+    \begin{enumerate}[label = {(\roman*)}] 
+        \item
+            $$
+                \lim_{z \rightarrow z_0} (f(z) \pm g(z)) = w_1 \pm w_2,
+            $$
+        \item
+            $$
+                \lim_{z \rightarrow z_0} (f(z)g(z)) = w_1w_2,
+            $$
+        \item
+            $$
+                \lim_{z \rightarrow z_0} (f(z) / g(z)) = w_1 / w_2,
+            $$
+            provided that $w_2 \neq 0.$
+    \end{enumerate}
+\end{thm}
+
+\subsubsection{Stereographic Projection}
+To provide definitions for infinite limits or limits at infinity, we must do a bit more work. As in the real case, it is not straightforward to define such limits. This arises due to the fact that that limiting processes in the plane have an infinte number of directions from which they can act. To circumvent this problem, we project the complex plane onto a sphere. From each point on the pane we may draw a line to the north pole (N) (point $(0, 0, 1)$ of the unit sphere. The resulting intersection of that line with the sphere creates a point on the sphere (P) which is the required projection. The north pole is called the point at \textit{infinity}. Points exterior to the unit sphere correspond to projections on the upper hemisphere, while points interior to the unit sphere correspond to projections on the lower hemisphere.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[trim = 20 0 0 0, scale = 0.7, clip]{./figs/chapter_1/stereo_projection.eps}
+    \caption{Stereographic Projection}
+\end{figure}
+
+For $\epsilon > 0$ points outside $\abs{z} = 1 / \epsilon$ are members of an $\epsilon-$neighbourhood of infinity (North Pole). Armed with this construct we can now define other familiar limits in the complex plane. Since they are defined using previous definitions of the limit, they are stated as a theorem.
+
+\begin{thm}[Unsual Limits]
+    If $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ and $z_0 \in X, w_0 \in \mathbb{C}$, then 
+    \begin{enumerate}[label = {(\roman*)}]
+        \item
+            $$
+                \lim_{z \rightarrow z_0} f(z) = \infty \iff \lim_{z \rightarrow z_0} \frac{1}{f(z)} = 0,
+            $$
+        \item
+            $$
+                \lim_{z \rightarrow \infty} f(z) = w_0 \iff \lim_{z \rightarrow 0} f\left(\frac{1}{z}\right) = w_0,
+            $$
+        \item
+            $$
+                \lim_{z \rightarrow \infty} f(z) = \infty \iff \lim_{z \rightarrow 0} \frac{1}{f(1/z)} = 0.
+            $$
+    \end{enumerate}
+\end{thm}
+
+\begin{proof}
+    \begin{enumerate}[label = {(\roman*)}]
+        \item
+            $\mathbf{[\Rightarrow]}$ Assume that $\lim_{z \rightarrow z_0} f(z) = \infty.$ Then,
+            $$
+                \forall\; \epsilon > 0\; \exists\; \delta > 0: \; 0 < d(z, z_0) < \delta \Rightarrow \abs{f(z)} > \frac{1}{\epsilon}.
+            $$
+            In other words, $f(z)$ is in the $\epsilon-$neighobouhood of infinity. This means that 
+            \begin{align*}
+                &&\abs{f(z)} 
+                    &> 
+                        \frac{1}{\epsilon} \\
+                &\Rightarrow &\frac{1}{\abs{f(z)}}
+                    &<
+                        \epsilon \\
+                &\Rightarrow &\abs{\frac{1}{f(z)} - 0}
+                    &<
+                        \epsilon.
+            \end{align*}
+            $\mathbf{[\Rightarrow]}$ Conversely, let $\lim_{z \rightarrow z_0} \frac{1}{f(z)} = 0.$ Then,
+            $$
+                \forall\; \epsilon > 0\; \exists\; \delta > 0: \; 0 < d(z, z_0) < \delta \Rightarrow \abs{\frac{1}{f(z)}} < \epsilon.
+            $$
+            \begin{align*}
+                &&\abs{\frac{1}{f(z)}}
+                    &< 
+                        \epsilon \\
+                &\Rightarrow &\abs{f(z)}
+                    &>
+                        \frac{1}{\epsilon}.
+            \end{align*}
+        \item
+            $\mathbf{[\Rightarrow]}$ Assume that $\lim_{z \rightarrow \infty} f(z) = w_0.$ Then,
+            $$
+                \forall\; \epsilon > 0\; \exists\; \delta > 0: \; \abs{z} > \frac{1}{\delta} \Rightarrow d(f(z), w_0) < \epsilon.
+            $$
+            This can be written as
+            $$
+                \forall\; \epsilon > 0\; \exists\; \delta > 0: \; \frac{1}{\abs{z}} < \delta \Rightarrow d(f(1/z), w_0) < \epsilon.
+            $$
+            $\mathbf{[\Rightarrow]}$ Conversely, suppose that $\lim_{z \rightarrow 0} f\left(\frac{1}{z}\right) = w_0.$ Then, 
+            $$
+                \forall\; \epsilon > 0\; \exists\; \delta > 0: \; \frac{1}{\abs{z}} < \delta \Rightarrow d(f(1/z), w_0) < \epsilon,
+            $$
+            which can be written as
+            $$
+                \forall\; \epsilon > 0\; \exists\; \delta > 0: \; \abs{z} > \frac{1}{\delta} \Rightarrow d(f(z), w_0) < \epsilon.
+            $$
+        \item
+            $\mathbf{[\Rightarrow]}$ Assume that $\lim_{z \rightarrow \infty} f(z) = \infty.$ Then,
+            $$
+                \forall\; \epsilon > 0\; \exists\; \delta > 0: \; \abs{z} > \frac{1}{\delta} \Rightarrow \abs{f(z)} > \frac{1}{\epsilon}.
+            $$
+            This implies
+            \begin{align*}
+                &&\forall\; \epsilon > 0\; \exists\; \delta > 0: 
+                    &\abs{z} > \frac{1}{\delta} \Rightarrow \abs{f(z)} > \frac{1}{\epsilon} \\
+                &\Rightarrow &\forall\; \epsilon > 0\; \exists\; \delta > 0:
+                    &0 < \frac{1}{\abs{z}} < 1 / \delta \Rightarrow \frac{1}{\abs{f(1/z)}} < \epsilon \\
+                &\Rightarrow &\forall\; \epsilon > 0\; \exists\; \delta > 0:
+                    &0 < \abs{z} < \delta \Rightarrow \frac{1}{\abs{f(1/z)}} < \epsilon.  
+            \end{align*}
+            $\mathbf{[\Rightarrow]}$ Conversely, we assume $\lim_{z \rightarrow 0} \frac{1}{f(1/z)} = 0.$ Then, 
+            $$
+                \forall\; \epsilon > 0\; \exists\; \delta > 0: 0 < \abs{z} < \delta \Rightarrow \frac{1}{\abs{f(1/z)}} < \epsilon.
+            $$
+            We may conclude that 
+            $$
+                \forall\; \epsilon > 0\; \exists\; \delta > 0: \abs{z} > \frac{1}{\delta} \Rightarrow \abs{f(z)} > \frac{1}{\epsilon}.
+            $$
+    \end{enumerate}
+    This closes the proof.
+\end{proof}
+
+
+\begin{exmp}
+    $$
+        \lim_{z \rightarrow -1} \frac{z + 1}{iz + 3} = 0.
+    $$
+\end{exmp}
+\begin{align*}
+    &&\lim_{z \rightarrow -1} \frac{z + 1}{iz + 3} 
+        &= 
+            0 \\
+    &\iff &\lim_{z \rightarrow -1} \frac{iz + 3}{z + 1} 
+        &= 
+            \infty.
+\end{align*}
+
+\begin{exmp}
+    $$
+        \lim_{z \rightarrow \infty} \frac{2z^3 - 1}{z^2 + 1} = \infty.
+    $$
+\end{exmp}
+\begin{align*}
+    &&\lim_{z \rightarrow \infty} \frac{2z^3 - 1}{z^2 + 1} 
+        &= 
+            \infty \\
+    &\iff &\lim_{z \rightarrow 0} \frac{(1/z^2) + 1}{2(1/z^3) - 1} 
+        &= 
+            0 \\
+    &\iff &\lim_{z \rightarrow 0} z\frac{1 + z^2}{2 - z^3}  
+        &= 
+            0.
+\end{align*}
+
+\subsection{Continuity}
+\begin{defn}[Continuous Functions]
+    A function $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$, is continuous at a point $z_0 \in X$ iff
+    $$
+        \forall\; \epsilon\; \exists\; \delta >: 0 < d(z, z_0) < \delta(\epsilon) \Rightarrow d(f(z), f(z_0)) < \epsilon,
+    $$
+    which is to say that
+    $$
+        \lim_{z \rightarrow z_0} f(z) = f(z_0).
+    $$
+\end{defn}
+
+\begin{thm}[Continuous Composition]
+    Let $f: X \subseteq \mathbb{C} \rightarrow dom(g) \subseteq \mathbb{C}$ and $g: Y \subseteq rng(f) \rightarrow \mathbb{C}$ such that $f$ is continous at some point $z_0 \in X$ and $g$ is continuous at $f(z_0) \in Y.$ 
+\end{thm}
+\begin{proof}
+    By defintion, 
+    $$
+        \forall\; \epsilon > 0\; \exists\; \delta_1 > 0: 0 < d(f(z), f(z_0)) < \delta_1 \Rightarrow d(g(f(z)), g(f(z_0))) < \epsilon,
+    $$
+    where $f(z) \in Y.$ Then, 
+    \begin{align*}
+        &&\text{For}\; \delta_1 > 0\; \exists \delta_2 > 0: 
+            &0 < d(z, z_0) < \delta_2 \Rightarrow d(f(z), f(z_0)) < \delta_1, \\
+        &\Rightarrow &\text{For}\; \delta_1 > 0\; \exists \delta_2 > 0: 
+            &0 < d(z, z_0) < \delta_2 \Rightarrow d(g(f(z)), g(f(z_0))) < \epsilon.
+    \end{align*}
+\end{proof}
+
+\begin{thm}[Non Vanishing Continuity]
+    If a function $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ is continuous and non-zero at a point $z_0 \in X$, then 
+    $$
+        \exists\; \epsilon > 0: \; f(z') \neq 0\; \forall z' \in S(z_0, \epsilon).
+    $$ 
+\end{thm}
+\begin{proof}
+From the definiton of continuity, for $\epsilon = \abs{f(z_0) / 2},$
+    $$
+        \exists\; \delta > 0: \; d(f(z), f(z_0)) < \abs{\frac{f(z_0)}{2}}.
+    $$
+Now, if we assume that $\exists\; z' \in S(z_0,\delta): f(z') = 0$, we would get
+    \begin{align*}
+        &&\abs{z} - \abs{z_0} \leq \abs{z - z_0} 
+            &\leq 
+                \abs{\frac{f(z_0)}{2}} \\
+        &\Rightarrow &\abs{f(z_0)}
+            &\leq
+                \abs{\frac{f(z_0)}{2}}.
+    \end{align*}
+This is a clear contradiction.
+\end{proof}
+
+\begin{thm}[Boundedness]
+    If a function $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ is continuous on the closed and bounded region $R \subseteq X,$ then 
+    $$
+        \exists\; \epsilon > 0: \; \abs{f(z)} \leq \epsilon, z \in R.
+    $$
+    That is to say, that $f$ is bounded in the region. Equality will hold for a particular $z \in R.$
+\end{thm}
+\begin{proof}
+    Let $f(z) = u(x, y) + iv(x, y),$ where $u, v: \mathbb{R}^{2} \rightarrow \mathbb{R}.$ Since $f$ is continuous on $R$ so are $u$ and $v.$ Since $R$ is closed and boundeded, $\exists z' = x' + iy', z'' = x'' + iy'' \in R: $
+    $$
+        \sup_{(x, y) \in R} u(x, y) = \max_{(x, y) \in R} u(x, y) = u(x', y')
+    $$
+    and
+    $$
+        \sup_{(x, y) \in R} v(x, y) = \max_{(x, y) \in R} v(x, y) = v(x'', y'')
+    $$
+    This allows us to constrain $f$ in $R$ as follows:
+    $$
+        \abs{f(z)} \leq \sqrt{u(x', y')^2 + v(x'', y'')^2}.
+    $$
+This concludes the proof.
+\end{proof}
+
+\begin{thm}[Vanishing Limits]
+    Let $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ and $g: Y \subseteq \mathbb{C} \rightarrow \mathbb{C}$ such that $\lim_{z \rightarrow z_0}f(z) = 0.$ If $g(z) \leq M$ in some neighbourhood of $z_0$, then
+    $$
+        \lim_{z \rightarrow z_0}f(z)g(z) = 0.
+    $$
+\end{thm}
+\begin{proof}
+    By definition, 
+    $$
+        \forall\; \epsilon > 0\; \exists\; \delta > 0: 0 < d(z, z_0) < \delta \Rightarrow \abs{f(z)} < \epsilon.
+    $$
+    Now, if $\exists\; \delta_1 > 0: \abs{g(z)} < M$ in $S(z_0, \delta_1).$ Then, choosing $\gamma = \min(\delta, \delta_1)$ gives us
+    $$
+        0 < d(z, z_0) < \gamma \Rightarrow \abs{f(z)g(z)} < \epsilon.
+    $$   
+\end{proof}
+
+\subsection{Derivatives}
+Derviatives of complex functions are defined similarly to derivatives of real functions. In fact, as we have seen so far, we can relate limiting processes to the real constiuent functions of the complex function, we can do the same for derivatives. This theorem would be quite useful in the future. For now, we start with a formal definiton.
+
+\begin{defn}[Derivative]
+    Let $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ be a complex function and let $f$ be defined in some $\epsilon-$neighbourhood of $z_0$. Then,
+    $$
+        f'(z_0) := \lim_{z \rightarrow z_0} \frac{f(z) - f(z_0)}{z - z_0}.
+    $$
+    Provided, the limit exists.
+\end{defn}
+For a more familiar version of the above defintion we may define the following quantities.
+$$
+    \Delta z: = z - z_0, d(z, z_0) < \epsilon
+$$
+where $\epsilon > 0$ is an in the above definition and 
+$$
+    \Delta w := f(z_0 + \Delta z) - f(z_0).
+$$ 
+Then,
+$$
+    f'(z_0) := \left.\frac{df}{dz}\right|_{z = z_0} := \lim_{\Delta z \rightarrow 0} \frac{\Delta w}{\Delta z}.
+$$
+
+\begin{exmp}
+    $$
+        f(z) = z^2, z \in \mathbb{C}.
+    $$
+\end{exmp}
+\begin{align*}
+    f'(z)
+        &= 
+            \lim_{\Delta z \rightarrow 0} \frac{\Delta w}{\Delta z} \\
+        &= 
+            \lim_{\Delta z \rightarrow 0} \frac{(z + \Delta z)^2 - z^2}{\Delta z} \\
+        &=
+            \lim_{\Delta z \rightarrow 0} \Delta z + 2z \\
+        &=
+            2z.
+\end{align*}
+
+\begin{exmp}
+    $$
+        f(z) = \overline{z}, z \in \mathbb{C}.
+    $$
+\end{exmp}
+\begin{align*}
+    f'(z)
+        &=
+            \lim_{\Delta z \rightarrow 0} \frac{\overline{(z + \Delta z)} - \overline{z}}{\Delta z} \\
+        &=
+            \lim_{\Delta z \rightarrow 0} \frac{\overline{\Delta z}}{\Delta z}.
+\end{align*}
+We can see that on the path $(\Delta x, 0),$ the limit is $1$ and on the path $(0, \Delta y),$ the limit is $-1$. This shows that the limit does not exist, which means that the derivative does not exist anywhere in $\mathbb{C}.$
+
+\begin{exmp}
+    $$
+        f(z) = \abs{z}^2, z \in \mathbb{C}.
+    $$
+\end{exmp}
+\begin{align*}
+    \lim_{\Delta z \rightarrow 0} \frac{\Delta w}{\Delta z}
+        &= 
+            \lim_{\Delta z \rightarrow 0} \frac{\abs{z + \Delta z}^{2} - \abs{z}^2}{\Delta z} \\
+        &=
+            \lim_{\Delta z \rightarrow 0} \frac{(z + \Delta z)(\overline{z} - \overline{\Delta z}) - \abs{z}^{2}}{\Delta z} \\
+        &=
+            \lim_{\Delta z \rightarrow 0} \frac{z\overline{\Delta z} + \Delta z \overline{z} + \abs{\Delta z}^{2}}{\Delta z} \\
+        &=
+            \lim_{\Delta z \rightarrow 0} \left(\overline{z} + \overline{\Delta z}  + z \frac{\overline{\Delta z}}{\Delta z}\right)
+\end{align*}
+On $(\Delta x, 0)$, we have 
+\begin{align*}
+    \lim_{\Delta z \rightarrow 0} \frac{\Delta w}{\Delta z}
+        &= 
+            z + \overline{z}.
+\end{align*}
+On $(0, \Delta y)$, we have 
+\begin{align*}
+    \lim_{\Delta z \rightarrow 0} \frac{\Delta w}{\Delta z}
+        &= 
+            z - \overline{z}.
+\end{align*}
+By the fact that limits should be unique, we have 
+\begin{align*}
+    &&z + \overline{z} 
+        &= 
+            z - \overline{z} \\
+    &\Rightarrow &z
+        &= 0.
+\end{align*}
+Therefore, $f'(z)$ exists only when $z = 0.$
+
+\begin{thm}[Chain Rule]
+    Suppose that $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ has a derivative at $z_0 \in X$ and $g: Y \subseteq rng(f) \rightarrow \mathbb{C}$ has a derivative at $f(z_0) \in Y$. Then, $g(f(z))$ has a derivative at $z_0$ and 
+    $$
+        g(f(z_0))' = g'(f(z_0)) f'(z_0).
+    $$
+\end{thm}
+\begin{proof}
+    Let $w_0 = f(z_0)$ and $g'(f(z_0)) = g'(w_0).$ Then, $\exists\; \epsilon > 0: g'(w_0) \in S(w_0, \epsilon).$ Define the function
+    $$
+        \phi(w) = 
+            \left\{
+                \begin{array}{cc}
+                    0 & w = w_0, \\
+                    \frac{g(w) - g(w_0)}{w - w_0} & w \neq w_0. \\
+                \end{array}
+            \right.
+    $$
+    Now, 
+    $$
+        \lim_{w \rightarrow w_0} \phi(w) = \lim_{w \rightarrow w_0} \frac{g(w) - g(w_0)}{w - w_0} = g'(w_0).
+    $$
+    If $f(z)$ is chose to be in $S(w, \epsilon)$, then
+    $$
+        \frac{g(f(z)) - g(f(z_0))}{f(z) - f(z_0)} = [g'(f(z_0)) + \phi(f(z))]\frac{f(z) - f(z_0)}{z - z_0}.
+    $$
+    If $z \rightarrow z_0,$ then
+    $$
+        (g(f(z_0)))' = g'(f(z_0))f'(z_0).
+    $$
+\end{proof}
+We have now reached the point where we can correlate derivatives in the complex plane to multidimensional derivatives in the real plane. This leads us to the \textit{Cauchy-Riemann Equations}.
+
+\begin{thm}[Cauchy-Riemann Equations]
+    Suppose that $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ can be written as 
+    $$
+        f(z) := u(x, y) + iv(x, y),
+    $$
+    where $u(x, y), v(x, y): \mathbb{R}^{2} \rightarrow \mathbb{R}.$ Further, assume that $f'(z_0)$ exists for some $z_0 = x_0 + iy_0 \in X.$ Then, 
+    $$
+        \frac{\partial u(x, y)}{\partial x}, \frac{\partial u(x, y)}{\partial y}, \frac{\partial v(x, y)}{\partial x}\; \text{and}\; \frac{\partial v(x, y)}{\partial y}\; \text{exist}
+    $$
+    and 
+    $$
+        \frac{\partial u(x_0, y_0)}{\partial x} = \frac{\partial v(x_0, y_0)}{\partial y},
+    $$
+    $$
+        \frac{\partial u(x_0, y_0)}{\partial y} = -\frac{\partial v(x_0, y_0)}{\partial x}.
+    $$
+    Finally, 
+    $$
+        f'(z_0) = \frac{\partial u(x_0, y_0)}{\partial x} + i\frac{\partial v(x_0, y_0)}{\partial x}.
+    $$
+\end{thm}
+\begin{proof}
+    Since $f'(z_0)$ exists, we have from our limit defintions that
+    $$
+        f'(z_0) = \lim_{(\Delta x, \Delta y) \rightarrow (0, 0)} Re\left(\frac{\Delta w}{\Delta z}\right) + \lim_{(\Delta x, \Delta y) \rightarrow (0, 0)} Im\left(\frac{\Delta w}{\Delta z}\right),
+    $$
+    where 
+    \begin{align*}
+        \frac{\Delta w}{\Delta z}
+            &=
+                \frac{f(z + z_0) - f(z_0)}{\Delta z} \\
+            &=
+                \frac{u(x_0 + \Delta x, y_0 + \Delta y) - u(x_0, y_0)}{\Delta x} + i\frac{v(x_0 + \Delta x, y_0 + \Delta y) - v(x_0, y_0)}{\Delta y}.
+    \end{align*} 
+    Since we know that the limit exists and must be unique, the limit on the paths $(0, \Delta y)$ and $(\Delta x, 0)$ should be equal. We must have
+
+    \noindent $(\Delta x, 0):$
+    \begin{align*}
+        \lim_{(\Delta x, \Delta y) \rightarrow (0, 0)} Re\left(\frac{\Delta w}{\Delta z}\right)
+            &= 
+                \lim_{\Delta x \rightarrow 0} \frac{u(x_0 + \Delta x, y_0) - u(x_0, y_0)}{\Delta x} \\
+            &=
+                \frac{\partial u(x_0, y_0)}{\partial x} \\
+    \end{align*}
+    \begin{align*}
+        \lim_{(\Delta x, \Delta y) \rightarrow (0, 0)} Im\left(\frac{\Delta w}{\Delta z}\right)
+            &= 
+                \lim_{\Delta x \rightarrow 0} \frac{v(x_0 + \Delta x, y_0) - v(x_0, y_0)}{\Delta y} \\
+            &=
+            \frac{\partial v(x_0, y_0)}{\partial x} \\
+    \end{align*}
+
+    \noindent $(0, \Delta y):$
+    \begin{align*}
+        \lim_{(\Delta x, \Delta y) \rightarrow (0, 0)} Re\left(\frac{\Delta w}{\Delta z}\right)
+            &= 
+                \lim_{\Delta y \rightarrow 0} \frac{v(x_0, y_0 + \Delta y) - v(x_0, y_0)}{\Delta y} \\
+            &=
+                \frac{\partial v(x_0, y_0)}{\partial y} \\
+    \end{align*}
+    \begin{align*}
+        \lim_{(\Delta x, \Delta y) \rightarrow (0, 0)} Re\left(\frac{\Delta w}{\Delta z}\right)
+            &= 
+                \lim_{\Delta y \rightarrow 0} \frac{u(x_0, y_0 + \Delta y) - u(x_0, y_0)}{i\Delta y} \\
+            &=
+                -\frac{\partial u(x_0, y_0)}{\partial y} \\
+    \end{align*}
+    This provides an expression for $f'(z_0)$ as 
+    $$
+        f'(z_0) = \frac{\partial u(x_0, y_0)}{\partial x} + i \frac{\partial v(x_0, y_0)}{\partial x} = \frac{\partial v(x_0, y_0)}{\partial y} - i \frac{\partial u(x_0, y_0)}{\partial y}. 
+    $$
+\end{proof}
+The Cauchy-Riemann equations are important as they provide us with necessary conditions for the existence of a derivative of a function in the complex plane. If we would like to discuss the converse, we need to impose stronger conditions on the partial derivatives of $u$ and $v$. This will allow us to write the following.
+\begin{thm}[Derivative Existence]
+    Suppose that $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ can be written as 
+    $$
+        f(z) := u(x, y) + iv(x, y),
+    $$
+    If $u$ and $v$ have continuous partial derivatives on $X$ and satisfy the Cauchy-Riemann equations, then $f$ is differentiable on $X$.
+\end{thm}
+
+\begin{exmp}
+    $f(z) = z^2.$ 
+\end{exmp}
+We have seen that $f$ is differentiable in $\mathbb{C}$ in \exmpref{2.2.9}. We may now see that the components of $f$ satisfy the Cauchy-Riemann equations. It is clear that
+\[
+    f(x + iy) = x^2 - y^2 + 2ixy.
+\]
+From this, we can see that $u(x, y) = x^2 - y^2$ and $v(x, y) = 2xy$. We have,
+\[
+    \begin{array}{cc}
+        \frac{\partial u(x, y)}{\partial x} = 2x & \frac{\partial u(x, y)}{\partial y} = -2y \\
+        \frac{\partial v(x, y)}{\partial x} = 2y & \frac{\partial v(x, y)}{\partial y} = 2x.
+    \end{array}
+\]
+Which satisfy the Cauchy-Riemann equations.
+
+\begin{exmp}
+    $f(z) = |z|^2.$
+\end{exmp}
+As seen in \exmpref{2.2.11}, $f$ is only differentiable at $z = 0.$ We can breakdown $f$ into 
+\[
+    f(x + iy) = x^2 + y^2,
+\]
+which means that $u(x, y) = x^2 + y^2$ and $v(x, y) = 0.$ Then,
+\[
+    \begin{array}{cc}
+        \frac{\partial u(x, y)}{\partial x} = 2x & \frac{\partial u(x, y)}{\partial y} = 2y \\
+        \frac{\partial v(x, y)}{\partial x} = 0 & \frac{\partial v(x, y)}{\partial y} = 0.
+    \end{array}
+\]
+These clearly do not satisfy the Cauchy-Riemann equations. 
+
+We now turn to inreasing the strength of our definition of differentiability. It is of much use that a function may be differentiable in an entire region. We give this a special name, an analytic function. Although we will define it more precisely, the idea that a function can be differentiable throughout a region is a useful foundation for the extension of functions, which we will encounter later.
+
+\begin{defn}[Analytic Functions]
+    A function $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ is analytic at $z_0 \in X$ iff
+    \[
+        \exists\; \epsilon > 0: f\; \text{is differentiable in}\; S(z_0, \epsilon).
+    \] 
+    If a function is analytic in $\mathbb{C},$ then $f$ is entire.
+\end{defn}
+
+An immediate consequence of this defintion is the well known fact that if a function's derivative is 0 in a region, the function itself must be constant there.
+\begin{thm}[Vanishing Derivative]
+    Suppose that $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ and $f'(z) = 0$ in some domain $D \subseteq X.$ Then, 
+    $f$ is constant in $D.$
+\end{thm}
+\begin{proof}
+    Let $f(z) = u(x, y) + iv(x, y).$ Then, because $f'(z) = 0$ in $D$, we must have that 
+    \begin{align*}
+        \frac{\partial u(x, y)}{\partial x} &= \frac{\partial v(x, y)}{\partial y} = 0 \\
+        \frac{\partial v(x, y)}{\partial y} &= -\frac{\partial u(x, y)}{\partial x} = 0.
+    \end{align*}
+    If we let $L$ be a line segment from point $P$ to $P'$ in $D.$ Then,
+    \[
+        \frac{du}{d\mathbf{s}} = \nabla u \cdot \hat{n} = 0.
+    \]
+    where $\mathbf{s}$ is the distance vector from $P$ to $P'$ and $\hat{n}$ is the unit vector along $L$ in the direction of increasing $\mathbf{s}$.
+    This gives us that 
+    \[
+        u(x, y) = C\; (\text{constant on}\; L).
+    \]
+    Since our choice for $L$ was arbitrary, this argument holds for all lines in $D$ and we may conclude that 
+    \[
+        u(x, y) = C\; (\text{constant in}\; D).
+    \]
+    The same argument holds for $v(x, y)$ and this closes the proof.
+\end{proof}
+
+\begin{exmp}
+    $f(z) = \frac{z^3 + 4}{(z^3 - 3)(z^2 + 1)}.$  
+\end{exmp}
+$f$ is analytic in $\mathbb{C} \backslash \{\pm\sqrt{3}, \pm i\}.$
+
+
+\begin{exmp}
+    $f(z) = \cosh\,x\cos\,y + i \sinh\,x\sin\,y.$  
+\end{exmp}
+$f$ is analytic in $\mathbb{C},$ i.e. \textit{entire}.
+
+\begin{thm}
+    Suppose that $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ and $\overline{f}$ are analytic in a domain $D \subset \mathbb{C}.$ Then, $f$ is constant in $D.$
+\end{thm}
+\begin{proof}
+    Let $f(z) = u_1(x, y) + iv_1(x, y)$ and $\overline{f}(z) = u_2(x, y) + iv_2(x, y).$  Then,
+    \begin{align*}
+        \frac{\partial u_1(x, y)}{\partial x} &= \frac{\partial v_1(x, y)}{\partial y}, \\
+        \frac{\partial u_1(x, y)}{\partial y} &= -\frac{\partial v_1(x, y)}{\partial x}.
+    \end{align*}
+    and
+    \begin{align*}
+        \frac{\partial u_2(x, y)}{\partial x} &= \frac{\partial v_2(x, y)}{\partial y}, \\
+        \frac{\partial u_2(x, y)}{\partial y} &= -\frac{\partial v_2(x, y)}{\partial x}.
+    \end{align*}
+    But $u_1(x, y) = u_2(x, y)$ and $v_1(x, y) = - v_2(x, y).$ Therefore,
+    \begin{align*}
+        &&\frac{\partial u_1(x, y)}{\partial x} 
+            &= 
+                \frac{\partial v_2(x, y)}{\partial y} \\
+        &\Rightarrow &\frac{\partial u_1(x, y)}{\partial x}
+            &=
+                0 \\
+        &\Rightarrow &\frac{\partial v_1(x, y)}{\partial x}
+            &=
+                0.
+    \end{align*}
+    Hence, $f$ is constant in $D$.
+\end{proof}
+
+\begin{thm}
+    If a function $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ is analytic in a domain $D \subset \mathbb{C},$ where $\abs{f(z)}$ is constant, then $f$ is constant in $D.$
+\end{thm}
+\begin{proof}
+    We have that
+    \[
+        \abs{f(z)} = C\; (\text{constant in}\; D).
+    \]
+    Clearly, if $C = 0$, then $f$ vanishes throughout $D$. If $C \neq = 0$, then
+    \begin{align*}
+        &&f(z)\overline{f(z)} 
+            &= 
+                C^2, \forall\; z \in D \\
+        &\Rightarrow &\overline{f(z)} 
+            &=
+                \frac{C^2}{f(z)}, \forall\; z \in D \\
+        &\Rightarrow &\overline{f(z)}\;
+            &\text{is analytic in D.}
+    \end{align*}
+    Hence, $f$ is constant in $D$.
+\end{proof}
+
+\begin{exmp}
+    $f(x, y) = 3x + y + i(3y - x), x, y \in \mathbb{R}^{2}.$
+\end{exmp}
+We have that $u(x, y) = 3x + y$ and $v(x, y) = 3y - x.$ The partial deriatives are
+\[
+    \begin{array}{cc}
+        \frac{\partial u(x, y)}{\partial x} = 3 & \frac{\partial u(x, y)}{\partial y} = 1 \\
+        \frac{\partial v(x, y)}{\partial x} = -1 & \frac{\partial v(x, y)}{\partial y} = 3 \\
+    \end{array}
+\]
+The first order partial derivatices of $u$ and $v$ are continuous in $\mathbb{R}^{2}$ and satisfy the Cauchy-Riemann equations. This means that $f$ is analytic in $\mathbb{C}.$
+
+\begin{exmp}
+    $f(z) = (z^2 - 2)e^{-z}.$
+\end{exmp}
+\begin{align*}
+    f(x, y)
+        &=
+            (x^2 - 2)e^{-x - iy} + 2ixye^{-x - iy} - 2e^{-x - iy} \\
+        &=
+            [(x^2 - y^2 -2)\cos y + 2xy\sin y]e^{-x} + i[-(x^2 - y^2)\sin y + 2xy\cos y + 2\sin y]e^{-x}.
+\end{align*} 
+Therefore,
+\[
+    u(x, y) = [(x^2 - y^2 -2)\cos y + 2xy\sin y]e^{-x} 
+\]
+and
+\[
+    v(x, y) = [-(x^2 - y^2)\sin y + 2xy\cos y + 2\sin y]e^{-x}.
+\]
+We have,
+\begin{equation*}
+    \begin{split}
+        \frac{\partial u(x, y)}{\partial x} 
+            &= 
+                (-e^{-x})[(2 x \cos y + 2 y \sin y)\left(\left(x^2 - y^2 - 2\right) \cos y + 2 x y\sin y \right) \\
+            &- 
+                \left(\left(x^2 - y^2 - 2\right) \cos y + 2xy\sin y\right)].
+    \end{split}
+\end{equation*}
+\begin{equation*}
+    \begin{split}
+        \frac{\partial u(x, y)}{\partial y} 
+            &= 
+            (-e^{-x})[( -\left( x^2 - y^2 - 2 \right) \sin y + 2x\sin y + 2xy\cos y - 2y \cos y )\\
+            &
+                e^{-x}\left( \left(x^2 - y^2 - 2 \right) \cos y + 2xy\sin y \right)].
+    \end{split}
+\end{equation*}
+\begin{equation*}
+    \begin{split}
+        \frac{\partial v(x, y)}{\partial x}
+            &= 
+                (-e^{-x}) [(2y\cos y - 2x\sin y)((y^2 - x^2)\sin y + 2xy \cos y + 2\sin y) \\
+            &+ 
+                ((y^2 - x^2)\sin y + 2xy\cos y + 2 \sin y].
+    \end{split}
+\end{equation*}
+\begin{equation*}
+    \begin{split}
+        \frac{\partial v(x, y)}{\partial y}
+           &= 
+                (-e^{-x}) [(y^2 - x^2) \cos y - 2xy\sin y + 2x\cos y + 2y\sin y + 2\cos y] \\
+            &
+                [(y^2 - x^2)\sin y + 2xy\cos y + 2\sin y]
+    \end{split}
+\end{equation*}
+Both $u$ and $v$ have continuous derivatives in $\mathbb{R}^{2}$ and satisfy the Cauchy-Riemann equations. This means that $f$ is analytic in $\mathbb{C}$ (entire). 
+
+\begin{exmp}
+    $f(z) = xy + iy.$
+\end{exmp}
+We have that $u(x, y) = xy$ and $v(x, y) = y$. The partial derivatives are
+\[
+    \begin{array}{cc}
+        \frac{\partial u(x, y)}{\partial x} = y & \frac{\partial u(x, y)}{\partial y} = x \\
+        \frac{\partial v(x, y)}{\partial x} = 0 & \frac{\partial v(x, y)}{\partial y} = 1 \\
+    \end{array}
+\]
+It is clear that $f$ is analytic not analytic anywhere.
+
+\section{Special Functions}
+\subsection{Exponential}
+The exponential function as defined on the real line can be defined for complex arguments. 
+\begin{defn}[Complex Expnential]
+    Let $z = x + iy \in \mathbb{C}.$ Then,
+    \[
+        e^{z} := e^{x}e^{iy}.
+    \]
+\end{defn}
+Familiar rules of exponents hold for example 
+\begin{thm}[Exponential Rules]
+    Let $z_1, z_2 \in \mathbb{C},$ where $z_1 = x_1 + iy_1$ and $z_2 = x_2 + iy_2$. Then,
+    \[
+        e^{z_1 + z_2} = e^{z_1}e^{z_2}.
+    \]
+\end{thm}
+\begin{proof}
+    We have,
+    \begin{align*}
+        e^{z_1 + z_2}
+            &=
+                e^{x_1 + iy_1 + x_2 + iy_2}\\
+            &=
+                e^{x_1 + x_2 + i(y_1 + y_2)}\\
+            &=
+                e^{x_1 + x_2}e^{i(y_1 + y_2)}\\
+            &=
+                e^{z_1}e^{z_2}.
+    \end{align*}
+\end{proof}
+Similarly, other rules can be derived for the exponential function. It is interesting to note that the derivative of the exponential function is itself just as in the real case and the fact that a complex exponential can be negative. 
+\begin{thm}[Exponential Derivative]
+    If $z \in \mathbb{C},$ then
+    \[
+        \frac{d e^{z}}{d z} = e^{z}.
+    \]
+\end{thm}
+\begin{proof}
+    Let $p \in \mathbb{C}.$ We have that,
+    \[
+        e^{z} = e^{x}\cos y + ie^{x}\sin y
+    \]
+    Which means that $u(x, y) = e^{x}\cos y$ and $v(x, y) = e^{x}\sin y$. The partial derivatives are
+    \[
+        \begin{array}{cc}
+            \frac{\partial u(x, y)}{\partial x} = e^{x}\cos y & \frac{\partial u(x, y)}{\partial y} = -e^{x}\sin y \\
+            \frac{\partial v(x, y)}{\partial x} = e^{x}\sin y & \frac{\partial v(x, y)}{\partial y} = e^{x}\cos y.
+        \end{array}
+    \]
+    Which are continuous in $\mathbb{R}^{2}$ and satisfy the Cauchy-Riemann equations. This means that $e^{z}$ is analytic in $\mathbb{C}$ (entire). Therefore,
+    \begin{align*}
+        \frac{d e^{z}}{d z}
+            &=
+               \frac{\partial u(x, y)}{\partial x} + i \frac{\partial v(x, y)}{\partial x} \\
+            &= 
+                e^{x}\cos y + ie^{x} \sin y\\
+            &=
+                e^{x}e^{iy} \\
+            &=
+                e^{z}.
+    \end{align*}
+\end{proof}
+
+\begin{exmp}
+    $e^{z} = i + 1$ for $z = x + iy \in \mathbb{C}$.
+\end{exmp}
+\begin{align*}
+    &&e^{z}
+        &=
+            i + 1 \\
+    &\Rightarrow &e^{x}e^{iy}
+        &=
+            i + 1 \\
+    &\Rightarrow &e^{x}e^{iy}
+        &=
+            \sqrt{2}e^{i\pi/4} \\
+    &\Rightarrow &z
+        &=
+            \ln \sqrt{2} + i \left(\frac{\pi}{4} + 2n\pi\right),
+\end{align*}
+where $n \in \mathbb{Z}.$
+
+\begin{exmp}
+    $e^{2 \pm 3i\pi} = -e^{2}.$
+\end{exmp}
+
+\begin{exmp}
+    $f(z) = 2z^2 - ze^{z} + e^{-z} - 3, z \in \mathbb{C}.$
+\end{exmp}
+$f$ is entire because it is a combination of the entire functions $e^{z}, e^{-z}, z, 3$.
+
+\begin{exmp} 
+    $f(z) = e^{\overline{z}}, z \in \mathbb{C}$ is not analytic anywhere in $\mathbb{C}.$
+\end{exmp}
+We can see that 
+\[
+    f(x, y) = e^{x}\cos y - ie^{x}\sin y.
+\]
+Therefore, $u(x, y) = e^{x}\cos y$ and $v(x, y) = -e^{x}\sin y$. The partial derivatives are
+\[
+    \begin{array}{cc}
+        \frac{\partial u(x, y)}{\partial x} = e^{x}\cos y & \frac{\partial u(x, y)}{\partial y} = -e^{x}\sin y \\
+        \frac{\partial v(x, y)}{\partial x} = -e^{x}\sin y & \frac{\partial v(x, y)}{\partial y} = -e^{x}\cos y.
+    \end{array}
+\]
+If $f$ was differentiable everywhere, we would have 
+\begin{align*}
+    &&\frac{\partial u(x, y)}{\partial x}
+        &= 
+            \frac{\partial v(x, y)}{\partial y} \\
+    &\Rightarrow &\cos y 
+        &=
+            0 \\
+    &\Rightarrow &y 
+        &= 
+            \frac{\pi}{2} + 2n\pi, n \in \mathbb{Z}
+\end{align*}
+and 
+\begin{align*}
+    &&\frac{\partial u(x, y)}{\partial y}
+        &= 
+            -\frac{\partial v(x, y)}{\partial x} \\
+    &\Rightarrow &\sin y 
+        &=
+            0 \\
+    &\Rightarrow &y 
+        &= 
+            2n\pi, n \in \mathbb{Z},
+\end{align*}
+which is not possible. Hence (by an implicit contradiction), $f$ is not analytic anywhere.
+
+\begin{exmp}
+    $\abs{e^{2z + i} + e^{iz^2}} \leq e^{2x} + e^{-2xy}, z = x + iy \in \mathbb{C}.$
+\end{exmp}
+\begin{align*}
+    e^{2z + i}  
+        &= 
+            e^{2x + i(2y + 1)}
+        = 
+            e^{2x}e^{i(2y + 1)}, \\
+    e^{iz^2}
+        &=
+            e^{i(x^2 - y^2 + 2ixy)}
+        =
+            e^{-2xy}e^{i(x^2 - y^2)}.\\   
+\end{align*}
+$\therefore$
+\begin{align*}
+    \abs{e^{2z + i} + e^{iz^2}}
+        &\leq
+            \abs{e^{2z + i}} + \abs{e^{iz^2}} \\
+        &=
+            \abs{e^{2x}e^{i(2y + 1)}} + \abs{e^{-2xy}e^{i(x^2 - y^2)}} \\
+        &=
+            e^{2x} + e^{-2xy}.
+\end{align*}
+
+\begin{exmp}
+    $\abs{e^{z^2}} \leq e^{\abs{z}^2}, z = x + iy \in \mathbb{C}$ 
+\end{exmp}
+We have that 
+\begin{align*}
+    &&x^2 - y^2 
+        &\leq 
+            x^2 + y^2 \\
+    &\Rightarrow &e^{x^2 - y^2}
+        &\leq
+            e^{x^2 + y^2} \\
+    &\Rightarrow &\abs{e^{z^{2}}}
+        &\leq
+            e^{\abs{z}^2}.
+\end{align*}
+
+\end{document}
