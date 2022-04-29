@@ -1433,4 +1433,146 @@ We have that
             e^{\abs{z}^2}.
 \end{align*}
 
+\begin{exmp}
+    $e^{z} = -2, z \in \mathbb{C}.$
+\end{exmp}
+We have,
+\begin{align*}
+    &&e^{z}
+        &=
+            -2 \\
+    &\Rightarrow &e^{z}
+        &=
+            2e^{i\pi} \\
+    &\Rightarrow &e^{x}
+        &= 
+            2\;
+    \text{and}\;
+    y
+        =
+            \pi + 2n\pi, n \in \mathbb{Z}. \\
+    &\Rightarrow &z
+        &= 
+            \ln 2 + i(\pi + 2n\pi).
+\end{align*}
+
+\begin{exmp}
+    $e^{z} = 1 + \sqrt{3}i.$
+\end{exmp}
+\begin{align*}
+    &&e^{z}
+        &=
+            1 + \sqrt{3}i \\
+    &\Rightarrow &e^{z}
+        &=
+            2e^{i\pi/3} \\
+    &\Rightarrow &z
+        &=
+            \ln 2 + i\left(\frac{\pi}{3} + 2n\pi\right), n \in \mathbb{Z}.
+\end{align*}
+
+\begin{exmp}
+    $e^{2z - 1} = 1, z \in \mathbb{C}.$
+\end{exmp}
+\begin{align*}
+    &&e^{2z - 1}
+        &=
+            1 \\
+    &\Rightarrow &e^{2z - 1}
+        &=
+            e^{i0} \\
+    &\Rightarrow &e^{2x - 1}e^{2iy}
+        &=
+            e^{i0} \\
+    &\Rightarrow &e^{2x - 1}
+        &=
+            e^{0}\;
+    \text{and}\;
+    e^{2iy}
+        =
+            e^{i0} \\
+    &\Rightarrow &z
+        &=
+            \frac{1}{2} + in\pi, n \in \mathbb{Z}. 
+\end{align*}
+
+\begin{exmp}
+    $\overline{e^{iz}} = e^{i\overline{z}},\; \text{iff}\; z = n\pi, n \in \mathbb{Z}.$
+\end{exmp}
+\begin{align*}
+    &&\overline{e^{iz}} 
+        &= 
+            e^{i\overline{z}} \\
+    &\iff &\overline{e^{-y}e^{ix}}
+        &=
+            e^{y}e^{ix} \\
+    &\iff &e^{-y}e^{-ix}
+        &=
+            e^{y}e^{ix} \\
+    &\iff &y
+        &=
+            0\;
+    \text{and}\;
+    x
+        =
+            n\pi, n \in \mathbb{Z} \\
+    &\iff &z
+        &= 
+            n\pi, n \in \mathbb{Z}.    
+\end{align*}
+
+\subsection{Logarithmic}
+\begin{defn}[Complex Logarithm]
+    Let $z = x + iy \in \mathbb{C}.$ Then,
+    \[
+        \ln z := \ln \abs{z} + i (\phi + 2n\pi), n \in \mathbb{Z},
+    \]
+    where $\phi = k Arg(z), k \in \mathbb{Z}.$ 
+\end{defn}
+The above definition maybe stated as a theorem, which arises arises naturally as a consequence of the definition of complex exponential. The question we are asking is to find $\ln z.$ This can be translated to the following, 
+\[
+    e^{w} = z,
+\]
+where $w \in \mathbb{C}.$ As we have seen in the examples above, we can use the propoerties of the exponential to solve such an equation.
+If $w = u + iv$ and $z = re^{i\phi}$ then 
+\begin{align*}
+    &&e^{w} 
+        &= 
+            z \\
+    &\Rightarrow &e^{u}e^{iv}
+        &=
+            re^{i\phi} \\
+    &\Rightarrow &e^{u}
+        &=
+            r\;
+    \text{and}\;
+    e^{iv}
+        =
+            e^{i\phi} \\
+    &\Rightarrow &w 
+        &= 
+            \ln r + i(\phi + 2n\pi), n \in \mathbb{Z}.
+\end{align*}
+Of course this definiton can be extended to logarithm of any base, but with a base change formula it doesn't matter which base is taken, which is why we continue with the natural logarithm. It is important to note that $\phi$ (as above) can be any integer multiple of the argument of the complex number under consideration. It is simpler most of the times to just use the argument itself. 
+
+\begin{exmp}
+    $z = -1 - i\sqrt{3}.$
+\end{exmp}
+\[
+    \ln z = \ln 2 + i\left(-\frac{2\pi}{3} + 2n\pi\right), n \in \mathbb{Z}.
+\]
+
+\begin{exmp}
+    $\ln(-1).$
+\end{exmp}
+Since $-1 = e^{i\pi},$ we have
+\[
+    \ln(-1) = i\pi\left(1 + 2n\right), n \in \mathbb{Z}.
+\]
+
+\begin{exmp}
+    Since $$
+\end{exmp}
+
+
 \end{document}
