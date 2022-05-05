@@ -1260,6 +1260,8 @@ We have that $u(x, y) = xy$ and $v(x, y) = y$. The partial derivatives are
 \]
 It is clear that $f$ is analytic not analytic anywhere.
 
+\subsection{Integration}
+
 \section{Special Functions}
 \subsection{Exponential}
 The exponential function as defined on the real line can be defined for complex arguments. 
@@ -1553,7 +1555,7 @@ If $w = u + iv$ and $z = re^{i\phi}$ then
         &= 
             \ln r + i(\phi + 2n\pi), n \in \mathbb{Z}.
 \end{align*}
-Of course this definiton can be extended to logarithm of any base, but with a base change formula it doesn't matter which base is taken, which is why we continue with the natural logarithm. It is important to note that $\phi$ (as above) can be any integer multiple of the argument of the complex number under consideration. It is simpler most of the times to just use the argument itself. 
+Of course this definiton can be extended to logarithm of any base, and the same argument as above works in deriving that equations which is why we continue with the natural logarithm. It is important to note that $\phi$ (as above) can be any integer multiple of the argument of the complex number under consideration. It is simpler most of the times to just use the argument itself. 
 
 \begin{exmp}
     $z = -1 - i\sqrt{3}.$
@@ -1570,9 +1572,290 @@ Since $-1 = e^{i\pi},$ we have
     \ln(-1) = i\pi\left(1 + 2n\right), n \in \mathbb{Z}.
 \]
 
+At this juncture, it might be constructive to introduce some commonly used notation. Although, the general notion is introduced later, we take a small diversion to define the principal branch of the complex logarithm.
+\begin{defn}
+   The principal branch of the complex logarithm is the branch of the complex logarithm with argument $\phi$ such that the complex logarithm $\ln 1 = 0.$ It is denoted as 
+   \[
+        \Ln z = \ln \abs{z} + i\phi.
+    \]
+\end{defn}
+
 \begin{exmp}
-    Since $$
+    $\Ln (-ei).$
 \end{exmp}
+\[
+    \ln (-ei) = 1 + i\left(-\frac{\pi}{2} + 2n\pi\right), n \in \mathbb{Z}.
+\]
+Therefore, 
+\[
+    \Ln (-ei) = 1 - i\frac{\pi}{2}.
+\]
+
+\begin{exmp}
+    $\Ln (1 - i).$
+\end{exmp}
+We can write $1 - i = \frac{1}{\sqrt{2}} e^{-i\pi / 4}.$ Then,
+\begin{align*}
+    &&\ln (1 -  i) 
+        &= 
+            -\frac{1}{2}\ln 2  + i\left(\frac{\pi}{4} + 2n\pi\right), n \in \mathbb{Z} \\
+    &\Rightarrow &\Ln (1 - i)
+        &=
+            -\frac{1}{2}\ln 2  + i\frac{\pi}{4}. \\
+\end{align*}
+
+\begin{exmp}
+    $\ln i.$
+\end{exmp}
+
+\begin{align*}
+    &&\ln i 
+        &= 
+            \ln 1 + i\left(\frac{\pi}{2} + 2n\pi\right) \\
+    &\Rightarrow &\ln i
+        &=
+        i\left(\frac{\pi}{2} + 2n\pi\right),
+\end{align*}
+$n \in \mathbb{Z}.$
+
+Below we prove one familiar rule of the logarithm as seen in the real numbers. 
+\begin{thm}[Log Power]
+    Let $z \in \mathbb{C}$ and $n \in \mathbb{Z}.$ Then, 
+    \[
+        \ln z^n = n\ln z.
+    \]
+\end{thm}
+\begin{proof}
+    Let $w = \ln z^n, n \in \mathbb{Z}.$ Then, $e^{w} = z^{n}.$ We can write $z$ in polar form as $z = r\;e^{i\phi}.$ Then, by \textit{De Moivre's} theorem,
+    \begin{align*}
+        &&\ln z^n 
+            &= 
+                \ln r^{n} + i \left(n\phi + 2k\pi\right)\\ 
+        &\Rightarrow &\ln z^{n}
+            &=
+                n (\ln r +  i\left(\phi + 2k\pi\right)\\
+        &\Rightarrow &\ln z^{n}
+            &=
+                n \ln z.
+    \end{align*}
+This argument can be extended to the rationals again using the extension to \textit{De Moivre's} theorem.
+\end{proof}
+
+\begin{exmp}
+    $\log_{\pi/2}(1 + i).$
+\end{exmp}
+\[
+    \log_{\pi/2}(1 + i) = \frac{1}{2}\log_{\pi / 2} 2  + i\left(\frac{\pi}{4} + 2n\pi\right).
+\]
+
+\subsection{Trigonometric}
+Euler's formula will be paramount in providing defintions of complex trigonometric functions. Assuming we know that \textit{Euler's Formula} holds for the real numbers, we can use it to define the complex trigonometric functions. Our work is a little easy as we have already defined the complex exponential.
+\begin{defn}[Complex Trigonometric Functions]
+    For $z \in \mathbb{C}, $ we define the following functions
+    \[
+        \sin z = \frac{e^{iz} - e^{-iz}}{2i}
+        \;\text{and}\;
+        \cos z = \frac{e^{iz} + e^{-iz}}{2}.
+    \]
+    This comes from adding and subtracting Euler's formula for $e^{iz}.$
+\end{defn}
+The complex arguments for the trigonometric functions are well posed as the right hand side of the defintions are well defined for complex values. There are other ways of defining these functions namely using the Maclaurin series expansions of the sine and cosine in the real domain and the corresponding hyporbolic trigonometric functions.
+
+It is in fact the case that the derivatives of complex trignometric functions obey the same equations as that of the real case. We know that $e^{z}, z \in \mathbb{C}$ is entire. We can therefore use this fact to derive the derivatives of all the trigonometric functions. One such example is shown below.
+
+\begin{thm}[Complex trigonometric derivative]
+    Let $z \in \mathbb{C}.$ Then,
+    \[
+        \frac{d}{dz} \cos z = -\sin z.
+    \]
+\end{thm}
+\begin{proof}
+    \begin{align*}
+        \frac{d}{dz} \cos z
+            &=
+                \frac{d}{dz} \frac{e^{iz} + e^{-iz}}{2} \\
+            &=
+                \frac{ie^{z} - ie^{-iz}}{2} \\
+            &=
+                - \frac{ie^{z} - ie^{-iz}}{2i} \\
+            &=
+                - \sin z.
+    \end{align*}
+\end{proof}
+
+First it might be useful to note that the $\sin$ function remains odd for all complex arguments.
+
+\begin{thm}
+    Let $z \in \mathbb{C}.$ Then,
+    \[
+        \sin(-z) = -\sin z.
+    \]
+\end{thm}
+\begin{proof}
+    \begin{align*}
+        \sin(-z)
+            &=
+                \frac{e^{-iz} - e^{iz}}{2i} \\
+            &=
+                - \frac{e^{iz} - e^{-iz}}{2i} \\
+            &=
+                - \sin z.
+    \end{align*}
+\end{proof}
+
+We now see some of the familiar properties of trigonometric functions.
+
+\begin{exmp}
+    $\sin(z_1 + z_ 2) = \sin z_1 \cos z_2 + \sin z_2 \cos z_1, z_1, z_2 \in \mathbb{C}.$
+\end{exmp}
+
+\begin{align*}
+    e^{i(z_1 + z_2)}
+        &=
+            e^{iz_1} e^{iz_2} \\
+        &=
+            (\cos z_1 + i\sin z_1) (\cos z_2 + i\sin z_2) \\
+        &=
+            \cos z_1 \cos z_2 - \sin z_1 \sin z_2+ i(\sin z_1 \cos z_2 + \cos z_1 \sin z_2).
+\end{align*}
+Comparing both sides of the equation, yields the identity above (and the identity involving $\cos(z_1 + z_2).$)
+
+\begin{exmp}
+    $\sin^{2}z + \cos^{2}z = 1, z \in \mathbb{C}.$
+\end{exmp}
+\begin{align*}
+    1
+        &=
+            \cos(z - z) \\
+        &=
+            \cos z \cos z - \sin z \sin (-z) \\
+        &=
+            \cos^{2}z + \sin^{2}z.
+\end{align*}
+
+\begin{exmp}
+    $\abs{\sin z}^{2} \geq \abs{\sin x}^{2},$ where $z = x + iy \in \mathbb{C}.$
+\end{exmp}
+We first breakdown $\sin z$ as follows
+\begin{align*}
+    \sin z
+        &=
+            \frac{e^{i(x + iy)} - e^{-i(x + iy)}}{2i} \\
+        &=
+            \frac{e^{-y}}{2i}(\cos x + i \sin x) - \frac{e^{y}}{2i}(\cos x - i \sin x) \\
+        &=
+            \left(\frac{e^{y} + e^{-y}}{2}\right)\sin x + i \left(\frac{e^{-y} - e^{y}}{2}\right)\cos x.
+\end{align*}
+\begin{align*}
+    \abs{\sin z}^{2}
+        &=
+            \frac{1}{4}\left(2 \sin^{2}x - 2\cos^{2}x + e^{-2y} + e^{2y}\right) \\
+        &=
+            \left(\frac{\sin^{2}x}{2} - \frac{\cos^{2}x}{2} + \frac{e^{-2y} + e^{2y}}{4}\right) \\
+        &=
+            \sin^{2}x + \left[\frac{e^{2y} + e^{-2y}}{4} - \frac{1}{2}\right] \\
+        &\geq
+            \sin^{2}x.
+\end{align*}
+This is because the term $\frac{e^{2y} + e^{-2y}}{4} - \frac{1}{2} \geq 0,$ (simple to verify) for any $y \in \mathbb{R}.$ The conclusion now follows.
+
+\begin{exmp}
+    $\sin i\overline{z} = \overline{\sin iz} \iff z = ni\pi, n \in \mathbb{Z}, z \in \mathbb{C}.$
+\end{exmp}
+We have the following defintions for the hyperbolic trigonometric functions (in the real case),
+\[
+    \sinh x := \frac{e^{x} - e^{-x}}{2}
+\]
+and
+\[
+    \cosh x := \frac{e^{x} + e^{-x}}{2},
+\]
+where $x \in \mathbb{R}.$ Note that using these definitions \exmpref{2.3.19}, would have had much simpler notation. In any case, to make our task easier we will use the definitions above to expand as follows (the expansion formulas follow from \exmpref{2.3.17})
+\begin{align*}
+    \overline{\sin iz}
+        &=
+            \overline{\sin (ix - y)} \\
+        &=
+            \overline{\sin (-y)\cosh x + i \cos(-y)\sinh x} \\
+        &=
+            -\sin y \cosh x - i \cos y \sinh x.
+\end{align*}
+and
+\begin{align*}
+    \sin \overline{iz}
+        &=
+            \sin x\cosh y + i \cosh x\sin y \\
+        &=
+            \sin (-y)\cosh x + i \cos(-y)\sinh x \\
+\end{align*}
+Since these two quantities are considered equal, we have
+\begin{align*}
+    &\iff   &\sin y \cosh x &=  0       &\text{and}&     &\cos y \sinh x &= 0     \\
+    &\iff   &\sin y         &=  0       &\text{and}&     &\sinh x        &= 0     \\
+    &\iff   &y              &=  n\pi    &\text{and}&     &x              &= 0.
+\end{align*}
+
+\begin{exmp}
+    $\sin z = \sinh 4.$
+\end{exmp}
+\begin{align*}
+    &&\sin z 
+        &= \cosh 4 \\
+    &\Rightarrow &\sinh y\cos x + i \cosh y\sin x
+        &= 
+            \cosh 4 \\
+\end{align*}
+Therefore,
+\[
+    \cosh y\sin x  = 0 \;\text{and}\; \sinh y\cos x = \cosh 4.
+\]
+The first thing to notice is that $y \neq 0 \;\because\; \sin x \neq \cosh 4, \;\forall\; x \in \mathbb{R}.$ This means that $\cos x = 0.$ Which gives us
+\begin{align*}
+    x
+        &=
+            \frac{\pi}{2} + n\pi, \\
+    y
+        &=
+            \pm 4,
+\end{align*}
+where $n \in \mathbb{Z}.$ Finally,
+\[
+    z = \frac{\pi}{2} + n\pi \pm 4i. 
+\]
+
+\begin{exmp}
+    $w = \sin z, z = x + iy \in \mathbb{C}.$
+\end{exmp}
+In this example, we see the mapping as defined above. As in \textit{section 2.1}, we visualise the $uv$ and $xy$ planes. To mathematically get the transformation we first define some bounds, namely $\pi / 2 < x < \pi / 2$ and $-\infty < y < \infty.$ These bounds are completely arbitrary. If $x = a$ (a vertical line in the $xy-$ plane) for now assuming that $a \neq 0$, then by our nifty expansions from \exmpref{2.3.20}, we have that 
+\[
+    u = \sin a \cosh y \;\text{and}\; v = \cos a \sinh y, 
+\]
+where $u(x, y) = \sin x \cosh y$ and $v(x, y) = \cos x \sinh y$ for $(x, y) \mathbb{R}^{2}$. Since we wish to see the effect of the mapping on $x = a$, we eliminate $y,$ by using the identity
+\[
+    \cosh^{2} \theta - \sinh^{2} \theta = 1, \theta \in \mathbb{R}.
+\]
+This gives us 
+\[
+    \left(\frac{u}{\sin a}\right)^{2} - \left(\frac{v}{\cos a}\right)^{2} = 1,
+\]
+which is a parabola paramtrised by $a.$
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width = \textwidth]{./figs/chapter_2/sin_map_z.eps}
+        \caption{$xy$-plane}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width = \textwidth]{./figs/chapter_2/sin_map_w.eps}
+        \caption{$uv$-plane}
+    \end{subfigure}
+    \caption{The light blue lines show the mapping of $x = a$ to the hyperbolas. $x = \pm \pi / 2$ is mapped to the regions $u \leq -1 \land u \geq 1,$ which are the red lines.}
+\end{figure}
+
 
 
 \end{document}
