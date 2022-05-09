@@ -1261,6 +1261,142 @@ We have that $u(x, y) = xy$ and $v(x, y) = y$. The partial derivatives are
 It is clear that $f$ is analytic not analytic anywhere.
 
 \subsection{Integration}
+Riemann integration is a limit on a sum over a given interval. In the complex plane the analogue is contour integration. That is the interval on the real line translates to (relatively) smooth curves in the complex plane. To this end we first define what curves are in the complex plane. And this defintion is inductive, meaning it's built using simpler structures.
+
+\begin{defn}[Curve]
+    A set of points C (2-tuples) $z = x + iy, x, y \in \mathbb{R}$ in the complex plane is said to be an arc if 
+    \begin{align*}
+        x &= x(t), \\
+        y &= y(t),
+    \end{align*} 
+such that $x(t)$ and $y(t)$ are continuous functions of the real parameter $t$ in some domain $[a, b] \in \mathbb{R}$. 
+\end{defn}
+Any point on the arc $C$ has complex points $z(t) = x(t) + iy(t)$ parametrised by the real parameter $t.$ Also, T $z'(t)$ exists, then 
+\[
+    z'(t) = x'(t) + iy'(t).
+\]
+
+\begin{defn}[Simple/Jordan Curve]
+    A curve in the complex plane that does not intersect itself.
+\end{defn}
+
+\begin{defn}[Simple/Jordan Closed Curve]
+    A curve $z(t), t \in [a, b]$ that is simple and $z(a) = z(b).$
+\end{defn}
+
+\begin{defn}[Contour]
+    A curve $C$ defined by $z(t), t \in [a, b]$ consisting of a finite number of smooth curves joined end to end such that $z(t)$ is continuous and $z'(t)$ is piecewise continuous.  
+\end{defn}
+A piecewise continuous function is a function which is only discontinuous at a finite number of points. It might just be that a piecewise continuous function is continuous. We now see some examples of curves.
+
+\begin{enumerate}[label = {(\roman*)}]
+    \item
+        \[
+            z(t) = 
+                \left\{
+                    \begin{array}{cc}
+                        t + it, & 0 \leq t \leq 1 \\
+                        t + i,  & 1 \leq t \leq 2 \\
+                    \end{array}
+                \right.
+        \]
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale = 0.7]{./figs/chapter_2/curve_ex_1.eps}
+            \caption{The curve $z(t)$ as defined above.}
+        \end{figure}
+
+        \item
+        \[
+            z(\theta) = e^{i\theta}, \theta \in [0, 2\pi].
+        \]
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale = 0.7]{./figs/chapter_2/curve_ex_2.eps}
+            \caption{The curve $z(\theta)$ as defined above.}
+        \end{figure}
+\end{enumerate}
+Perhaps an interesting thing to observe is that \textit{Lagrange's Mean Value} theorem does not hold for curves as defined above.
+\begin{thm}[Invalid Lagrange' Mean Value Theorem]
+    Suppose that $w(t) = u(t), iv(t)$ is a continuous curve for $t \in [a, b],$ i.e. $u(t)$ and $v(t)$ are continuous functions of $t$ in $[a, b]$. Even if $w'(t)$ exists, Lagrange's Mean Value theorem does not hold.
+\end{thm}
+\begin{proof}
+    We need only provide a counter example. Namely,
+    \[
+        w(t) = e^{it}, 0 \leq t \leq 2\pi.
+    \]
+    In this case,
+    \begin{align*}
+        \frac{w(2\pi) - w(0)}{2\pi}
+            &=
+                0 \\
+            &\neq
+                w'(t), \;\forall\; t \in [0, 2\pi].
+    \end{align*}
+    This follows from the fact that $\abs{w'(t)} = 1, \;\forall\; t \in [0, 2\pi].$
+\end{proof}
+
+We are finally ready to define the contour integral. 
+
+\begin{defn}[Contour Integral]
+    Let $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ be a complex function defined for all points on the contour $C$ parametrised as $z(t) = x(t) + iy(t), t \in [a, b] \in \mathbb{R}.$ Then, the integral of $f$ over $C$ is defined as
+    \[
+        \int_{C} f(z)\,dz := \lim_{\norm{P} \rightarrow 0} \sum_{k = 1}^{n}f(z^{*}_{k})\Delta z_{k},
+    \]
+    where $P$ is a partition of the interval $[a, b]$ into $n$ distinct parts into subintervals $[t_{k - 1}, t_{k}], k \in [0, n]$ where $\Delta t_{k} = t_{k} - t_{k - 1}.$ This gives us that $\Delta z_{k} := z_{k} - z_{k - 1} := z(t_{k}) - z(t_{k - 1}).$ Finally, $z^{*}_{k}$ is a random point on $C$ in the subinterval $[t_{k - 1}, t_{k}].$
+\end{defn}
+A caveat is that the integral is meaningful when the limit exists. For this to be true, we must at least have that $f$ is continuous and $C$ is smooth or atleast piecewise smooth. This definition, is akin to that of the Riemann Integral in the real setting. To begin our examples and see the Contour integral in action, we first see how complex functions with real domains can be integrated. In this case, the real and imaginaary parts can be seperated or $i$ can be treated as a constant during the familiar Riemann integration. If we have a complex valued function, with a real domain defined as $f(t) = x(t) + iy(t), t \in [a, b],$ then
+\begin{align*}
+    \int_{a}^{b} f(t)\,dt
+        &=
+            \int_{a}^{b} x(t)\,dt + i\int_{a}^{b} v(t)\,dt \\
+        &=
+            \int_{a}^{b} \Re f(t)\,dt + i\int_{a}^{b} \Im f(t)\,dy.
+\end{align*}
+Which means that 
+\begin{align*}
+    \Re \int_{a}^{b} f(t)\,dt
+        &= 
+            \int_{a}^{b} \Re f(t)\,dt. \\
+    \Im \int_{a}^{b} f(t)\,dt
+        &= 
+            \int_{a}^{b} \Im f(t)\,dt.
+\end{align*}
+
+\begin{exmp}
+    $f(t) = e^{it}, t \in [0, \pi / 4].$
+\end{exmp}
+\begin{align*}
+    \int_{a}^{b} f(t)\,dt
+        &=
+            \int_{0}^{\pi / 4} e^{it}\,dt \\
+        &=
+            \frac{1}{i}
+            \left[
+                e^{it}
+            \right]_{0}^{\pi / 2} \\
+        &=
+            \frac{1}{\sqrt{2}} + i\left(1 - \frac{1}{\sqrt{2}}\right)
+\end{align*}
+
+\begin{exmp}
+    $f(t) = e^{(1 + i)x}, x \in [0, \pi].$
+\end{exmp}
+\[
+    \int_{a}^{b} f(x)\,dx = \int_{0}^{\pi} e^{x}\cos x\,dx + i\int_{0}^{\pi} e^{x}\sin x\,dx.
+\]
+Therefore,
+\[
+    \int_{0}^{\pi} e^{x}\cos x\,dx = -\frac{1}{2}(1 + e^{\pi})
+\]
+and
+\[
+    \int_{0}^{\pi} e^{x}\sin x\,dx = \frac{1}{2}(1 + e^{\pi}).
+\]
+Which gives us that 
+\[
+    \int_{0}^{\pi} e^{(1 + i)x}\,dx = -\frac{1}{2}(1 + e^{\pi}) + \frac{i}{2}(1 + e^{\pi}).
+\]
 
 \section{Special Functions}
 \subsection{Exponential}
