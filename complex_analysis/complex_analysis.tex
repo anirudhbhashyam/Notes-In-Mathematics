@@ -1316,7 +1316,7 @@ A piecewise continuous function is a function which is only discontinuous at a f
             \caption{The curve $z(\theta)$ as defined above.}
         \end{figure}
 \end{enumerate}
-Perhaps an interesting thing to observe is that \textit{Lagrange's Mean Value} theorem does not hold for curves as defined above.
+It is essential to take note of the direction of the curve. This observation will become paramount in the discussion that is to follow. For the meantime,  it is also worth noting that \textit{Lagrange's Mean Value} theorem does not hold for curves as defined above.
 \begin{thm}[Invalid Lagrange' Mean Value Theorem]
     Suppose that $w(t) = u(t), iv(t)$ is a continuous curve for $t \in [a, b],$ i.e. $u(t)$ and $v(t)$ are continuous functions of $t$ in $[a, b]$. Even if $w'(t)$ exists, Lagrange's Mean Value theorem does not hold.
 \end{thm}
@@ -1345,7 +1345,7 @@ We are finally ready to define the contour integral.
     \]
     where $P$ is a partition of the interval $[a, b]$ into $n$ distinct parts into subintervals $[t_{k - 1}, t_{k}], k \in [0, n]$ where $\Delta t_{k} = t_{k} - t_{k - 1}.$ This gives us that $\Delta z_{k} := z_{k} - z_{k - 1} := z(t_{k}) - z(t_{k - 1}).$ Finally, $z^{*}_{k}$ is a random point on $C$ in the subinterval $[t_{k - 1}, t_{k}].$
 \end{defn}
-A caveat is that the integral is meaningful when the limit exists. For this to be true, we must at least have that $f$ is continuous and $C$ is smooth or atleast piecewise smooth. This definition, is akin to that of the Riemann Integral in the real setting. To begin our examples and see the Contour integral in action, we first see how complex functions with real domains can be integrated. In this case, the real and imaginaary parts can be seperated or $i$ can be treated as a constant during the familiar Riemann integration. If we have a complex valued function, with a real domain defined as $f(t) = x(t) + iy(t), t \in [a, b],$ then
+A caveat is that the integral is meaningful when the limit exists. For this to be true, we must at least have that $f$ is continuous and $C$ is smooth or atleast piecewise smooth. This definition, is akin to that of the Riemann Integral in the real setting. To begin our examples and see the Contour integral in action, we first see how complex functions with real domains can be integrated. We will practically define the contour integral after this (as for  now, the defintion insinuates that we must divide a given contour into an infinte number of pieces which is by no means parctical). In this case, the real and imaginaary parts can be seperated or $i$ can be treated as a constant during the familiar Riemann integration. If we have a complex valued function, with a real domain defined as $f(t) = x(t) + iy(t), t \in [a, b],$ then
 \begin{align*}
     \int_{a}^{b} f(t)\,dt
         &=
@@ -1397,6 +1397,96 @@ Which gives us that
 \[
     \int_{0}^{\pi} e^{(1 + i)x}\,dx = -\frac{1}{2}(1 + e^{\pi}) + \frac{i}{2}(1 + e^{\pi}).
 \]
+
+It is certainly the case that in functions in the examples above, the properties of the Riemann integral (such as linearity) hold. It is an important question to pose, as to whether the parametrisation of a curve is unique and the consequence of this on the contour integral itself. To take a step towards our final destination, we first prove the following theorem. It is easy to see that the parametric representation of the arc is not unique using the following example
+\begin{align*}
+    z(t) &= e^{it}, t \in [0, 2\pi], \\
+    z(t) &= \frac{2t}{1 + t^2} + i\frac{1 - t^2}{1 + t^2},
+\end{align*}
+however, both defintions lead to the same arc in the plane and infact, they have the same length (which should be obvious but is stated explicitly below).
+
+\begin{thm}[Length Preservation]
+    Let $C: z(t), t \in [a, b]$ be a contour parametrised by $t \in \mathbb{R}.$ Then, if $t := \phi(\tau), \tau \in [\alpha, \beta],$ where both $\phi$ and $\phi'$ are continuous and $\phi'(\tau) > 0,$ then 
+    \[
+        \int_{a}^{b} \abs{z'(t)}\,dt = \int_{\alpha}^{\beta} (z(\phi(\tau)))'\,d\tau.
+    \]
+\end{thm}
+\begin{proof}
+    If $z(t) = x(t) + iy(t),$ then
+    \begin{align*}
+        &&z(t) 
+            &=
+                x(t) + iy(t) \\
+        &\Rightarrow &z(\phi(\tau)) 
+            &= 
+                x(\phi(\tau)) + iy(\phi(\tau)) \\
+        &\Rightarrow &z(\phi(\tau))'
+            &=
+                [x'(\phi(\tau)) + y'(\phi(\tau))]\phi'(\tau) \\
+        &\Rightarrow &z(\phi(\tau))'
+            &=
+                z'(\phi(\tau))\phi'(\tau), \\
+    \end{align*}
+where $\alpha \leq \tau \leq \beta.$ We have by variable substitution and above,
+    \begin{align*}
+        \int_{a}^{b} \abs{z'(t)}\,dt
+            &=
+                \int_{\alpha}^{\beta} \abs{z'(\phi(\tau))\phi'(\tau)}\,d\tau. \\
+            &=
+                \int_{\alpha}^{\beta} \abs{z(\phi(\tau))'}\,d\tau. \\
+    \end{align*}
+\end{proof}
+The above theorem was important because of the discussion that is about to follow. We state the (practical) definiton of the complex contour integral as a theorem. 
+\begin{thm}[Complex Contour Integral Usable]
+    Let $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ be a complex function defined for all points on the contour $C$ parametrised as $z(t) = x(t) + iy(t), t \in [a, b] \in \mathbb{R}.$ Then,
+    \[
+        \int_{C} f(z)\,dz = \int_{a}^{b} f(z(t))z'(t)\,dt.
+    \]
+\end{thm}
+\begin{proof}
+    If we consider, the contour integral as in \defnref{2.2.25}, then we can make the following subsitutions 
+    \[
+        f(z) = u(x(t), y(t)) + iv(x(t), y(t)), \Delta z = \Delta x(t) + i\Delta y(t).
+    \]
+    This gives us
+    \begin{align*}
+        \int_{C} f(z)\,d\Delta z \\
+            &=    
+                \lim_{\norm{P} \rightarrow 0} \sum_{k = 1}^{n}(u(x(t)_{k}^{*}, y(t)^{*}) + iv(x(t)_{k}^{*}, y(t)^{*}))(\Delta x(t) + i\Delta y(t)) \\
+        \begin{split}
+            &=
+                \lim_{\norm{P} \rightarrow 0} \sum_{k = 1}^{n}u(x(t)^{*}, y(t)^{*})\Delta x(t) + i(u(x(t)^{*}, y(t)^{*})\Delta y(t) \\
+            &\qquad+ 
+                v(x(t)^{*}, y(t)^{*})\Delta x(t)) - v(x(t)^{*}, y(t)^{*})\Delta y(t) \\
+        \end{split}
+        \\
+        \begin{split}
+            &=
+                \lim_{\norm{P} \rightarrow 0} \left[\sum_{k = 1}^{n}(u(x(t)^{*}, y(t)^{*})\Delta x(t) - v(x(t)^{*}, y(t)^{*})\Delta y(t))\right. \\
+            &\qquad+ 
+                i\left.\sum_{k = 1}^{n} (u(x(t)^{*}, y(t)^{*})\Delta y(t) + v(x(t)^{*}, y(t)^{*})\Delta x(t))\right] \\
+        \end{split}
+        \\
+        \begin{split}
+            &=
+                \int_{C} u(x(t), y(t))\,dx(t) -v(x(t), y(t))\,dy(t) \\
+            &\qquad+ 
+                i\int_{C} v(x(t), y(t))\,dx(t) + u(x(t), y(t))\,dy(t) \\
+        \end{split}
+        \\
+        \begin{split}
+            &=
+                \int_{a}^{b} u(x(t), y(t))x'(t)\,dt -v(x(t), y(t))y'(t)\,dt \\
+            &\qquad+ 
+                i\int_{a}^{b} v(x(t), y(t))x'(t)\,dt + u(x(t), y(t))y'(t)\,dt \\
+        \end{split}
+        \\
+            &=
+                \int_{a}^{b} [u(x(t), y(t)) + iv(x(t), y(t))](x'(t) + iy'(t))\,dt \\
+            &=
+                \int_{a}^{b} f(z(t))z'(t)\,dt.
+    \end{align*}
+\end{proof}
 
 \section{Special Functions}
 \subsection{Exponential}
