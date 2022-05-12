@@ -1427,7 +1427,7 @@ however, both defintions lead to the same arc in the plane and infact, they have
             &=
                 z'(\phi(\tau))\phi'(\tau), \\
     \end{align*}
-where $\alpha \leq \tau \leq \beta.$ We have by variable substitution and above,
+    where $\alpha \leq \tau \leq \beta.$ We have by variable substitution and above,
     \begin{align*}
         \int_{a}^{b} \abs{z'(t)}\,dt
             &=
@@ -1436,8 +1436,8 @@ where $\alpha \leq \tau \leq \beta.$ We have by variable substitution and above,
                 \int_{\alpha}^{\beta} \abs{z(\phi(\tau))'}\,d\tau. \\
     \end{align*}
 \end{proof}
-The above theorem was important because of the discussion that is about to follow. We state the (practical) definiton of the complex contour integral as a theorem. 
-\begin{thm}[Complex Contour Integral Usable]
+The above theorem was important because of the discussion that is about to follow. In essence, it was to verify the practical defintion (below) of the contour intgral and make sure that it is well defined. We state the (practical) definiton of the complex contour integral as a theorem. 
+\begin{thm}[Contour Integral]
     Let $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ be a complex function defined for all points on the contour $C$ parametrised as $z(t) = x(t) + iy(t), t \in [a, b] \in \mathbb{R}.$ Then,
     \[
         \int_{C} f(z)\,dz = \int_{a}^{b} f(z(t))z'(t)\,dt.
@@ -1487,6 +1487,91 @@ The above theorem was important because of the discussion that is about to follo
                 \int_{a}^{b} f(z(t))z'(t)\,dt.
     \end{align*}
 \end{proof}
+
+The linearity of the contour integral (as defined above) arises naturally from the linearity of the Riemann integral. Namely, if $f, g: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ be complex functions defined for all points on the contour $C$ and let $z_0 \in \mathbb{C},$ then,
+\[
+    \int_{C} (f(z) + z_0g(z))\,dz = \int_{C} f(z)\,dz + z_0\int_{C} g(z)\,dz.
+\]
+
+\begin{thm}[Contour Integral Orientation]
+    Let $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ be a complex function defined for all points on the contour $C$ parametrised as $z(t) = x(t) + iy(t), t \in [a, b] \in \mathbb{R}.$ If we denote, $-C: z(-t), t \in [-b, -a],$ (as the contour with its direction reversed during construction) then
+    \[
+        \int_{-C} f(z)\,dz = -\int_{C} f(z)\,dz.
+    \]
+\end{thm}
+\begin{proof}
+    With the variable subsitution $u = -t,$ we have
+    \begin{align*}
+        \int_{-C} f(z)\,dz 
+            &=
+                -\int_{-b}^{-a} f(z(-t))z'(-t)\,dt \\
+            &=
+                -\int_{a}^{b} f(z(u))z'(u)\,du. \\
+            &=
+                -\int_{C} f(z)\,dz.
+    \end{align*}
+\end{proof}
+
+Upto this point we have been lose with what we mean by \textit{orientation.} To make it a bit more precise, the convention used is that if curves are constructed anticlockwise then they have a positive orientation and negative if clockwise (just like angles in the plane.) To this end we further prove a theorem that allows one to deconstruct the contour integral into sub-integrals on individual contours. This is because our defintion of the contour accounted for the fact that it may be an inductively constructed object made of end to end joined smooth curves.
+
+\begin{thm}
+    Let $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ be a complex function defined (and continuous) for all points on the contour $C$ (piecewise smooth)) parametrised as $z(t) = x(t) + iy(t), t \in [a_{1}, b_{n}] \in \mathbb{R},$ where $C = C_1 + C_2 + \cdots + C_n$ (all smooth contours joined end to end) parametrised as $z_{k}(t) = x_{k}(t) + iy_{k}(t), t_{k} \in [a_{k}, b_{k}] \in \mathbb{R},$ where $z_{k - 1}(b_{k - 1}) = z_{k}(a_{k})$ (for all $k = 1, 2, \cdots, n$). Then,
+    \[
+        \int_{C} f(z)\,dz = \sum_{k = 1}^{n} \int_{C_{k}} f(z)\,dz.
+    \]
+\end{thm}
+\begin{proof}
+    We prove this theorem using induction.
+
+    \noindent \textbf{Base case} $\mathbf{n = 2:}$ We have 
+    \begin{align*}
+        \int_{C} f(z)\,dz
+            &=
+                \int_{C_1 + C_2} f(z)\,dz \\
+            &=
+                \int_{a_{1}}^{b_{2}} f(z_{1}(t) + z_{2}(t))(z_{1}'(t) + z_{2}'(t))\,dt \\
+            &=
+                \int_{a_{1}}^{b_{1}} f(z_{1}(t) + z_{2}(t))(z_{1}'(t) + z_{2}'(t))\,dt + \int_{a_{a_2}}^{b_{2}} f(z_{1}(t) + z_{2}(t))(z_{1}'(t) + z_{2}'(t))\,dt \\
+            &=
+                \int_{a_{1}}^{b_{1}} f(z_{1}(t))z_{1}'(t)\,dt + \int_{a_{2}}^{b_{2}} f(z_{2}(t))z_{2}'(t)\,dt \\
+            &=
+                \int_{C_1} f(z)\,dz + \int_{C_2} f(z)\,dz,
+    \end{align*}
+    which is possible because $b_1 = a_2.$
+
+    \noindent \textbf{Inductive hypothesis} $\mathbf{n = k:}$ We assume that the statement is true for some $k > 2.$ We then consider
+    \begin{align*}
+        \int_{C} f(z)\,dz
+            &=
+                \int_{\sum_{j = 1}^{k + 1}C_{j}} f(z)\,dz \\
+            &=
+                \int_{\sum_{j = 1}^{k}C_{j}} f(z)\,dz + \int_{C_{k + 1}} f(z)\,dz \\
+            &=
+                \int_{\sum_{j = 1}^{k - 1}C_{j}} f(z)\,dz + \int_{C_{k}} f(z)\,dz + \int_{C_{k + 1}} f(z)\,dz \\
+            &= 
+                \\
+            & \quad\vdots 
+                \\
+            &=
+                \sum_{j = 1}^{k + 1} \int_{C_{j}} f(z)\,dz.
+    \end{align*}
+    Here the subsequent removal of the last integral from the sum in each step is possible due to the base case. This closes the induction process.  
+\end{proof}
+It is worth noting that writing the contour $C$ (as above) as $C_1 + C_2 + \cdots + C_n$ is a convention. It should actually be $C_1 \cup C_2 \cup  \cdots \cup C_n$ because of the defintion that it is a set of points. But the notation above sits well with the fact the contour is in fact $z_{1}(t) + \cdots + z_{n}(t).$
+
+\begin{exmp}
+    \[
+        \int_{C} (y - x - 3ix^2)\,dz, z = x + iy,
+    \]
+where $C = C_1 + C_2 + C_3$, such that $z_{1}(t) = it, z_{2}(t) = t + i, z_{3}(t) = t + it,$ $0 \leq t \leq 1.$
+\end{exmp}
+The contour is shown below
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.7]{./figs/chapter_2/ci_contour_ex_1.eps}
+    \caption{Contour in \exmpref{2.2.21}.}
+\end{figure}
+
 
 \section{Special Functions}
 \subsection{Exponential}
