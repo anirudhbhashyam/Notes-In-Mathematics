@@ -3,6 +3,8 @@
 
 \input{../frontend/fe.tex}
 
+\bibliography{./literature/refs.bib}
+
 \begin{document}
     \begin{titlingpage}
         \maketitle
@@ -159,21 +161,21 @@ Connectedness is a much more abstact concept in topology but for the complex pla
 \begin{exmp}
     $|z - 2 + i| \leq 1.$
 \end{exmp}
-In the complex plane, the above region looks as follows. It is closed, connected and bounded. Note that it is not a domain.
+In the complex plane, the above region looks as follows. It is closed, connected and bounded. Note that it is not a domain. 
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.7]{./figs/chapter_1/region_plot_1.eps}
-    \caption{A region in the complex plane.}
+    \caption{The region $|z - 2 + i| \leq 1$ in blue.}
 \end{figure}
 
 \begin{exmp}
     $|2z + 3| \geq 4.$
 \end{exmp}
-In the complex plane, the above region looks as follows. It is open, connected and unbounded.This region forms a domain.
+In the complex plane, the above region looks as follows. It is open, connected and unbounded. This region forms a domain.
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.7]{./figs/chapter_1/region_plot_2.eps}
-    \caption{A region in the complex plane.}
+    \caption{The region $|2z + 3| \geq 4$ in blue.}
 \end{figure}
 
 
@@ -184,7 +186,7 @@ In the complex plane, the above region looks as follows. It is neither open nor 
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.7]{./figs/chapter_1/region_plot_3.eps}
-    \caption{A region in the complex plane.}
+    \caption{The region $0 \leq arg[z] \leq \pi / 4 (z \neq 0)$ in blue.}
 \end{figure}
 
 
@@ -195,7 +197,7 @@ In the complex plane, the above region looks as follows. It is closed, connected
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.7]{./figs/chapter_1/region_plot_4.eps}
-    \caption{A region in the complex plane.}
+    \caption{The region $|z - 4| \geq |z|$ in blue.}
 \end{figure}
 
 \chapter{Functions}
@@ -397,7 +399,7 @@ This lends to the visualisation.
         \includegraphics[width = \textwidth]{./figs/chapter_1/limits_def_1.eps}
         \caption{$uv$-plane}
     \end{subfigure}
-    \caption{$c_2 = 2.$}
+    \caption{Limits and neighobouehoods.}
 \end{figure}
 
 Keeping in line with our previous breakdown of complex functions into constituent parts, we can now use the above definition to define the existence of the complex limit using the real and imaginary function parts. In fact, this will allow us to use other properties of functions by referring to the constituent parts of the complex function.
@@ -1572,6 +1574,264 @@ The contour is shown below
     \caption{Contour in \exmpref{2.2.21}.}
 \end{figure}
 
+We have,
+
+\noindent $\mathbf{C_1}:\; z(t) = it, 0 \leq t \leq 1:$ \\
+\begin{align*}
+    \int_{C_1} (y - x - 3ix^2)\,dz
+        &=
+            \int_{0}^{1} it i\,dt \\
+        &=
+            -\int_{0}^{1} t\,dt \\
+        &=
+            -\frac{1}{2}.
+\end{align*}
+
+\noindent $\mathbf{C_2}:\; z(t) = t + i, 0 \leq t \leq 1:$ \\
+\begin{align*}
+    \int_{C_1} (y - x - 3ix^2)\,dz
+        &=
+            \int_{0}^{1}  (1 - t - 3it^2)\,dt \\
+        &=
+            -\int_{0}^{1} t\,dt \\
+        &=
+            \frac{1}{2} - i.
+\end{align*}
+
+\noindent $\mathbf{C_3}:\; z(t) = t + it, 0 \leq t \leq 1:$ \\
+\begin{align*}
+    \int_{C_3} (y - x - 3ix^2)\,dz
+        &=
+            \int_{0}^{1}  (t - t - 3it^2)(1 + i)\,dt \\
+        &=
+            -\int_{0}^{1} t\,dt \\
+        &=
+            1 - i.
+\end{align*}
+
+Therefore,
+\[
+    \int_{C} (y - x - 3ix^2)\,dz = 1 - 2i.
+\]
+
+\begin{exmp}
+    \[
+        \int_{C} \overline{z}\,dz,
+    \]
+    where $C: z(t) = 2e^{it}, t \in [-\pi/2, \pi/2].$
+\end{exmp}
+
+\begin{align}
+    \int_{C} \overline{z}\,dz \\
+        &=
+            \int_{-\pi/2}^{\pi/2}2e^{-it}2ie^{it}\,dt \\
+        &=
+            4i\int_{-\pi/2}^{\pi/2}\,dt \\
+        &=
+            4\pi i.
+\end{align}
+
+\begin{thm}[Constrained Integrals]
+    If $C: z(t), t \in [a, b]$ is a piecewise continous contour, then 
+    \[
+        \abs{\int_{a}^{b} z(t)\,dt} \leq \int_{a}^{b}\abs{z(t)}\,dt. 
+    \]
+\end{thm}
+If
+\[
+    \int_{a}^{b} z(t)\,dt = 0,
+\]
+then the inequality holds trivially.
+If we assume that 
+\[
+    \int_{a}^{b} z(t)\,dt = r_0e^{i\theta_0},
+\]
+then
+\begin{align*}
+    &&r_0
+        &=
+            \int_{a}^{b} e^{i\theta_0}z(t)\,dt \\
+    &\Rightarrow &r_0
+        &=
+            \Re \int_{a}^{b} e^{i\theta_0}z(t)\,dt \\ 
+    &\Rightarrow &r_0
+        &=
+            \int_{a}^{b} \Re [e^{i\theta_0}z(t)]\,dt.
+\end{align*}
+Now,
+\begin{align*}
+    \abs{\Re [e^{i\theta_0}z(t)]}
+        &\leq
+            \abs{e^{i\theta_0}z(t)} \\
+        &\leq
+            \abs{z(t)}, \;\forall\; t \in [a, b].
+\end{align*}
+Therefore,
+\[
+    \abs{\int_{a}^{b} z(t)\,dt} = \int_{a}^{b}\abs{\Re[e^{i\theta_0}z(t)]}\,dt \leq \int_{a}^{b}\abs{z(t)}\,dt.
+\]
+
+\begin{thm}[Bounded Integrals]
+    Let $C: z(t), t \in [a, b]$ be a smooth contour with length $L$ and suppose that a function $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ is piecewise continuous on $C.$ If $f$ is bounded in $X$, i.e.
+    \[
+        \exists M > 0: \abs{f(z)} \leq M, z \in X,
+    \]
+    then
+    \[
+        \abs{\int_{a}^{b} f(z)\,dt} \leq ML.
+    \]
+\end{thm}
+\begin{proof}
+    We have,
+    \begin{align*}
+        \abs{\int_{C}f(z)\,dz}
+            &\leq
+                \int_{a}^{b} \abs{f(z(t))z'(t)}\,dt \\
+            &=
+                \int_{a}^{b} \abs{f(z(t))}\abs{z'(t)}\,dt \\
+            &\leq
+                M\int_{a}^{b}\abs{z'(t)}\,dt \\
+            &=
+                ML.
+    \end{align*}
+\end{proof}
+
+\begin{exmp}
+    \[
+        \abs{\int_{C} \frac{z + 4}{z^3 - 1}}\,dz \leq \frac{6\pi}{7},
+    \]
+    where $C: \abs{z} = 2, z = 2$ to $z = 2i.$
+\end{exmp}
+We have,
+\begin{align*}
+    \abs{z + 4} 
+        &\leq \abs{z} + 4 \\
+    \abs{z^3 - 1}
+        &\geq \abs{\abs{z^{3}} - 1}
+\end{align*}
+On the contor $C$, we can bound the numerator and denominator as 
+\begin{align*}
+    \abs{z + 4} 
+        &\leq 6 \\
+    \abs{z^3 - 1}
+        &\geq 7.
+\end{align*}
+Which means that on the contour $C$, 
+\[
+    \abs{\frac{z + 4}{z^3 - 1}} \leq \frac{6}{7}.
+\]
+The length of the contour in given by the integral
+\begin{align*}
+    \int_{C}\,dt
+        &=
+            \int_{0}^{\pi/2} \abs{z'(t)}\,dt \\
+        &=
+            \int_{0}^{\pi/2} 2\,dt \\
+        &=
+            \pi.
+\end{align*}
+Therefore,
+\[
+    \abs{\int_{C} \frac{z + 4}{z^3 - 1}}\,dz \leq \frac{6\pi}{7}.
+\]
+
+\begin{exmp}
+    \[
+        \lim_{R \rightarrow \infty} \int_{C_{R}} \frac{\sqrt{z}}{z^2 + 1}\,dz,
+    \]
+    where $C_{R}: z(\theta) = Re^{i\theta}, 0 \leq \theta \leq \pi.$
+\end{exmp}
+The contour integral can be written as 
+\[
+    \int_{0}^{\pi} \frac{\sqrt{R} e^{i(\theta / 2 + 2k\pi)}}{R^2e^{2i\theta} + 1}\,d\theta.
+\]
+where $k = 0, 1.$ We have the following restrictions to the numerator and denomiator on the contour $C_{R}$
+\begin{align*}
+    \abs{\sqrt{z}}
+        &=
+            \abs{\sqrt{R} e^{i(\theta / 2 + 2k\pi)}} \\
+        &=
+            \sqrt{R}. \\
+    \text{and} \\
+    \abs{z^2 + 1}
+        &=
+            \abs{R^2e^{2i\theta} + 1} \\
+        &\geq
+            R^2 - 1. \\
+\end{align*}
+We finally have that 
+\begin{align*}
+    \lim_{R \rightarrow \infty}\abs{\int_{0}^{\pi} \frac{\sqrt{R} e^{i(\theta / 2 + 2k\pi)}}{R^2e^{2i\theta} - 1}\,dt} 
+        &\leq 
+            \lim_{R \rightarrow \infty}\frac{\pi R\sqrt{R}}{R^2 - 1} \\
+        &\rightarrow 
+            0.
+\end{align*}
+Which implies
+\[
+    \lim_{R \rightarrow \infty} \int_{C_{R}} \frac{\sqrt{z}}{z^2 + 1}\,dz = 0.
+\]
+
+\begin{exmp}
+    \[
+        \abs{\int_{C} \frac{dz}{z^4}} \leq 4\sqrt{2},
+    \]
+    where $C: z(t) = t + i(1 - t), 0 \leq t \leq 1.$
+\end{exmp}
+The contour is shown below.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.7]{./figs/chapter_2/ci_contour_ex_2.eps}
+    \caption{Contour of the function $z(t) = t + i(1 - t)$}
+\end{figure}
+As shown the minimum value of $\abs{z}$ is $1\sqrt{2}.$ Therefore,
+\[
+    \abs{z^{4}} = \abs{z}^{4} \geq \frac{1}{4}.
+\]
+Allowing us to infer that
+\begin{align*}
+    \abs{\int_{C} \frac{dz}{z^4}}
+        &\leq
+            \int_{C}4\,dz \\
+        &\leq
+            4\sqrt{2}.
+\end{align*}
+The length of the contour is $\sqrt{2}.$
+
+\begin{exmp}
+    \[
+        \abs{\int_{C} e^z - \overline{z}\,dz} \leq 60, 
+    \]
+    where $C$ is the contour shown in the diagram. 
+\end{exmp}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.7]{./figs/chapter_2/ci_contour_ex_3.eps}
+    \caption{Contour for \exmpref{2.2.26}.}
+\end{figure}
+We have, 
+\begin{align*}
+    \abs{e^z - \overline{z}}
+        &\leq
+            \abs{e^z} + \abs{\overline{z}} \\
+        &=
+            e^x + \abs{z} \\
+        &\leq 
+            5.
+\end{align*}
+Along the contour the maximum value of $e^x$ is 1. The length of the contour $L = 12.$ Therefore, 
+    \[
+        \abs{\int_{C} e^z - \overline{z}\,dz} \leq 60.
+    \]
+
+\begin{exmp}
+    \[
+        \abs{\int_{C} \frac{2z^ - 1}{z^4 + 5z^2 + 4}\,dz} \leq \frac{\pi R (2R^2 + 1)}{(R^2 - 1)(R^2 - 4)},
+    \]
+    where $C$ is the upper half of $C: \abs{z} = R, R > 2.$
+\end{exmp}
+
+
 
 \section{Special Functions}
 \subsection{Exponential}
@@ -2166,6 +2426,9 @@ which is a parabola paramtrised by $a.$
     \end{subfigure}
     \caption{The light blue lines show the mapping of $x = a$ to the hyperbolas. $x = \pm \pi / 2$ is mapped to the regions $u \leq -1 \land u \geq 1,$ which are the red lines.}
 \end{figure}
+
+\cite{shanahan2003}
+\printbibliography
 
 
 

@@ -2,7 +2,7 @@
 % -- PACKAGES -- %
 % ----------------------------------------------------------------
 % Import graphics.
-\usepackage{graphicx}
+\usepackage{graphicx, wrapfig}
 
 % Page settings.
 \usepackage[margin = 1.2in, showframe]{geometry}
@@ -36,9 +36,13 @@
 % Headers.
 % \usepackage{fancyhdr}
 
+% Bibliography.
+\usepackage[style = numeric, maxcitenames = 1, backend = biber]{biblatex}
+% \addbibresource{./literature/refs.bib}
 
 % Links.
 \usepackage[colorlinks = true]{hyperref}
+
 
 % ---------------------------------------------------------------- %
 % -- FONTS -- %
@@ -85,13 +89,13 @@
 % ---------------------------------------------------------------- %
 
 % -- Theorem Environment Settings -- %
-\definecolor{thmcolor}{RGB}{142, 50, 1}
+\definecolor{thmcolor}{RGB}{117, 69, 117}
 \newtheoremstyle{thmstyle}{}{}{\color{thmcolor}}{}{\color{thmcolor}\bfseries}{}{ }{}
 \theoremstyle{thmstyle}
 \newtheorem{thm}{Theorem}[section]
 
 % -- Proof Environment Settings -- %
-\definecolor{proofcolor}{RGB}{209, 134, 6}
+\definecolor{proofcolor}{RGB}{93, 69, 117}
 \let\oldproof\proof
 \renewcommand{\proof}{\color{proofcolor}\oldproof}
 
