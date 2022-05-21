@@ -8,7 +8,6 @@
 \begin{document}
     \begin{titlingpage}
         \maketitle
-    
         \vspace{-50pt}
         \begin{center}
             \Large C O M P L E X\;\;A N A L Y S I S 
@@ -1826,12 +1825,180 @@ Along the contour the maximum value of $e^x$ is 1. The length of the contour $L 
 
 \begin{exmp}
     \[
-        \abs{\int_{C} \frac{2z^ - 1}{z^4 + 5z^2 + 4}\,dz} \leq \frac{\pi R (2R^2 + 1)}{(R^2 - 1)(R^2 - 4)},
+        \abs{\int_{C_R} \frac{2z^ - 1}{z^4 + 5z^2 + 4}\,dz} \leq \frac{\pi R (2R^2 + 1)}{(R^2 - 1)(R^2 - 4)},
     \]
-    where $C$ is the upper half of $C: \abs{z} = R, R > 2.$
+    where $C$ is the upper half of $\abs{z} = R, R > 2.$
 \end{exmp}
+On the contour, the upper bound of the numerator is 
+\[
+    \abs{2z^2 - 1} \leq 2\abs{z^2} + 1 = 2R^2 + 1
+\]
+and the lower bound of the denominator is 
+\begin{align*}
+    \abs{z^4 + 5z^2 + 4}
+        &=
+            \abs{z^2 + 4}\abs{z^2 + 1} \\
+        &\leq
+            \abs{\abs{z^2} -4}\abs{\abs{z^2} - 1} \\
+        &=
+            (R^2 - 4)(R^2 - 1).
+\end{align*}
+The length of the contour is $\pi R.$ This gives us the constraint 
+\[
+    \abs{\int_{C_R} \frac{2z^ - 1}{z^4 + 5z^2 + 4}\,dz} \leq \frac{\pi R (2R^2 + 1)}{(R^2 - 1)(R^2 - 4)}.
+\]
 
+\begin{exmp}
+    Let $C_{\rho}: \abs{z} = \rho, \rho \in (0, 1)$ and $f$ be a complex valued function that is analytic in $\abs{z} \leq 1.$ Then,
+    \[
+        \lim_{\rho \rightarrow 0} \int_{C_{\rho}} z^{-1/2}f(z)\,dz = 0.
+    \]
+\end{exmp}
+Since $f(z)$ is analytic for $\abs{z} \leq 1,$ it is continuous in that region and there exists $M > 0$ such that 
+\[
+    \abs{f(z)} \leq M, \abs{z} \leq 1.
+\]
+Also,
+\[
+    z^{-1/2} = \frac{1}{\sqrt{\rho}}e^{-i \theta / 2 + 2k\pi},
+\]
+where $k = 0, 1$ and $z = \rho e^{i\theta}.$ Taking the principal branch, i.e. $k = 0,$ we have
+\begin{align*}
+    \lim_{\rho \rightarrow 0} \abs{\int_{C_{\rho}} z^{-1/2}f(z)\,dz} 
+        &\leq
+            \lim_{\rho \rightarrow 0} 2\pi \rho * M / \sqrt{\rho} \\
+        &=
+            0.
+\end{align*}
+The result now follows.
 
+\begin{exmp}
+    Define the polynomial 
+    \[
+        P_{n}(x) = \frac{1}{\pi}\int_{0}^{\pi}(x + i \sqrt{1 - x^2}\cos\theta)^{n}\,d\theta.
+    \]
+    where $-1 \leq x \leq 1$ and $n \in \mathbb{N}\cup\{0\}.$ Then,
+    \[
+        \abs{P_{n}(x)} \leq 1.
+    \]
+\end{exmp}
+We have,
+\begin{align*}
+    \abs{x + i\sqrt{1 - x^2}\cos\theta}
+        &\leq
+            \abs{x} + \abs{\sqrt{1 - x^2}} \\
+        &leq
+            1.
+\end{align*}
+Which follows from the fact that $\abs{x} \leq 1.$ Now,
+\begin{align*}
+    \abs{P_{n}(x)}
+        &=
+            \frac{1}{\pi}\abs{\int_{0}^{\pi}(x + i \sqrt{1 - x^2}\cos\theta)^{n}\,d\theta} \\
+        &\leq
+            \frac{1}{\pi}\int_{0}^{\pi}\abs{x + i \sqrt{1 - x^2}\cos\theta}^{n}\,d\theta \\
+        &\leq
+            \frac{1}{\pi} \int_{0}^{\pi}d\theta\\
+        &=
+            1.
+\end{align*}
+We now state a fundamental theorem of line integrals (an extension of the fundamental theorem of calculus) which we will later use extensively to prove more specialised theorems.
+
+\begin{thm}
+    Suppose that $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ is a continuous function on some domain $D \subseteq X.$ If anyone of the following statements is true, then so are the others
+    \begin{enumerate}[label = {(\roman*)}]
+        \item
+            $f$ has an antiderivative $F$ throughout D.
+        \item
+            The integrals of $f$ along any smooth contours between two points $z_1$ and $z_2$ in $\mathbb{C}$ is $F(z_2) - F(z_1)$ assuming that the contour flows from $z_1$ to $z_2$.
+        \item
+            The integrals of $f$ along any closed and smooth contour lying entirely in $D$ is 0.
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    (i) $\Rightarrow$ (ii)
+    Assume that $f$ has an antiderivative $F$ in $D$. Let $C: z(t), t \in [a , b]$ be a contour lying in $D$ such that $z(a) = z_1$ and $z(b) = z_2.$ Then, 
+    \[
+        \frac{d}{dt} F(z(t)) = F'(z(t))z'(t) = f(z(t))z'(t)
+    \]
+    and
+    \begin{align*}
+        \int_{C} f(z)\,dz
+            &=
+                \int_{a}^{b} f(z(t))z'(t)\,d(t) \\
+            &=
+                \int_{a}^{b} \frac{d}{dt}F(z(t))\,dt \\
+            &=
+                F(z(b)) - F(z(a)).
+    \end{align*}
+    
+    \noindent (ii) $\Rightarrow$ (iii)
+    Suppose that 
+    \[
+        \int_{C} f(z)\,dz = F(z_2) - F(z_1),
+    \]
+    where $C$ is a smooth contour lying in $D$, extending from $z_1$ to $z_2$. Then, we let $z_1$ and $z_2$ lie on a closed contour $C$ in $D.$ Then, there can be two paths that can be taken from $z_1$ to $z_2$ in $D$. One anticlockwise and the other clockwise. Let us say these paths are represented as $C_1$ and $C_2$ respectively extending between $z_1$ and $z_2$. Without loss of generality, the closed contour $C = C_1 - C_2.$ From our assumption we must have that
+    \begin{align*} 
+        &
+            &\int_{C_{1}} f(z)\,dz 
+                &=
+                    \int_{C_2} f(z)\,dz \\
+        &\Rightarrow 
+            &\int_{C_{1}}f(z)\,dz - \int_{C_2} f(z)\,dz
+                &=
+                    0 \\
+        &\Rightarrow 
+            &\int_{C_1 - C_2} f(z)\,dz
+                &=
+                    0 \\
+        &\Rightarrow
+            &\int_{C} f(z)\,dz
+                &=
+                    0.
+    \end{align*}
+    This implies (iii).
+
+    \noindent (iii) $\Rightarrow$ (i)
+    Finally, assume that 
+    \[
+        \int_{C} f(z)\,dz = 0,
+    \]
+    where $C$ is any closed contour in $C.$ Define the integral
+    \[
+        F(s) := \int_{z_0}^{z}f(s)\,ds.
+    \]
+    Consider the small step $\Delta z$
+    \begin{align*}
+        F(z + \Delta z) - F(z) 
+            &= 
+                \int_{z_0}^{z + \Delta z}f(s)\,ds - \int_{z_0}^{z}f(s)\,ds \\
+            &= 
+                \int_{z}^{z + \Delta z}f(s)\,ds \\
+    \end{align*}
+    If we select the line segment from $z$ to $z + \Delta z,$ then
+    \[
+        \int_{z}^{z + \Delta z} ds = \Delta z.
+    \]
+    Therefore,
+    \begin{align*}
+        \frac{F(z + \Delta z) - F(z)}{\Delta z} - f(z)
+            &=
+                \frac{1}{\Delta z}\int_{z}^{z + \Delta z} f(s)\,ds - f(z) \\
+            &=
+                \frac{1}{\Delta z}\int_{z}^{z + \Delta z} f(s)\,ds - \frac{1}{\Delta z}\int_{z}^{z + \Delta z} f(z)\,ds \\
+            &=
+                \frac{1}{\Delta z}\int_{z}^{z + \Delta z} f(s) - f(z)\,ds.
+    \end{align*}
+    Since $f$ is continuous, at $z$, $\forall\; \epsilon > 0 \;\exists\; \delta > 0:$
+    \[
+        d(s, z) < \delta \Rightarrow d(f(s), f(z)) < \epsilon.
+    \] 
+    We may let $\abs{\Delta z} < \delta$ as it is arbitrary, then
+    \[
+        \abs{\frac{F(z + \Delta z)}{\Delta z} - f(z)} < \frac{1}{\abs{\Delta z}} \epsilon \Delta z = \epsilon.
+    \]
+    Therefore, $F'(z) = f(z)$ in $D.$ This closes the proof.
+\end{proof}
 
 \section{Special Functions}
 \subsection{Exponential}
@@ -2429,7 +2596,5 @@ which is a parabola paramtrised by $a.$
 
 \cite{shanahan2003}
 \printbibliography
-
-
 
 \end{document}

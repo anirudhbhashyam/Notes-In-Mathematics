@@ -6,6 +6,9 @@
 *.out
 *.toc
 
+# DIRECTORIES.
+literature
+
 # BIBLATEX FILES.
 *.blg
 *.bbl
