@@ -37,7 +37,7 @@
 % \usepackage{fancyhdr}
 
 % Bibliography.
-\usepackage[style = numeric, maxcitenames = 1, backend = biber]{biblatex}
+\usepackage[citestyle = authoryear, bibstyle = alphabetic, maxcitenames = 1, backend = biber]{biblatex}
 % \addbibresource{./literature/refs.bib}
 
 % Links.
@@ -93,6 +93,7 @@
 \newtheoremstyle{thmstyle}{}{}{\color{thmcolor}}{}{\color{thmcolor}\bfseries}{}{ }{}
 \theoremstyle{thmstyle}
 \newtheorem{thm}{Theorem}[section]
+\newcommand{\thmref}[1]{{\color{thmcolor} Theorem #1}}
 
 % -- Proof Environment Settings -- %
 \definecolor{proofcolor}{RGB}{93, 69, 117}

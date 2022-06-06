@@ -142,6 +142,7 @@ Geometrically these definitions only seek to succinctly convey that a point is i
 
 \begin{defn}[Connected Set]
     A set $X \subseteq \mathbb{C}$ is connected if for each pair of numbers $z_1, z_2 \in X$ there exists a polygonal line contained in $X$ that connects $z_1$ and $z_2$.
+    {\color{red} Needs revision and possible breakdown.}
 \end{defn}
 
 \begin{defn}[Domain]
@@ -1999,6 +2000,214 @@ We now state a fundamental theorem of line integrals (an extension of the fundam
     \]
     Therefore, $F'(z) = f(z)$ in $D.$ This closes the proof.
 \end{proof}
+
+\begin{exmp}
+    \[\int_{0}^{1 + i} z^2\,dz\].
+\end{exmp}
+\begin{align*}
+    \int_{0}^{1 + i} z^2\,dz
+        &=
+            \left[\frac{z^3}{3}\right]_{0}^{1 + i} \\
+        &=
+            \frac{2}{3}(-1 + i).
+\end{align*}
+Note that it does not matter on which contour we integrate in the interval $z = 0$ to $z = 1+ i.$
+
+\begin{exmp}
+    \[
+        \int_{C} \frac{dz}{z^2},
+    \]
+    where $C: z(\theta) = 2e^{i\theta}, -\pi \leq \theta \leq \pi.$
+\end{exmp}
+Since the antiderivative of $1/z^2$ is $-1/z$ in $\mathbb{C}$, we have 
+\[
+    \int_{C} \frac{1}{z^{2}}\,dz = 0.
+\]
+
+\begin{exmp}
+    \[
+        \int_{C} \frac{dz}{z},
+    \]
+    where $C: z(\theta) = 2e^{i\theta}, -\pi/2 \leq \theta \leq \pi/2.$
+\end{exmp}
+We have that 
+\[
+    \frac{d}{dz}\ln z = \frac{d}{dz}[\ln\abs{z} + i(\phi + 2n\pi)] = \frac{1}{z}.
+\]
+where $\phi + 2n\pi = arg z,$ and $n \in \mathbb{Z}.$  Taking the principal branch, we get
+\begin{align*}
+    \int_{C} \frac{dz}{z}
+        &=
+           \left[ \ln\abs{z} + i\phi \right]_{-2i}^{2i} \\
+        &=
+            i\pi.
+\end{align*}
+
+\begin{exmp}
+    \[
+        \int_{C} z^{1/2}\,dz,
+    \]
+    where $C$ is any contour from $z = -3$ to $z = 3$ lying above the $x-$axis.
+\end{exmp}
+$z^{1/2} = \sqrt{\abs{z}}e^{i\theta / 2},$ where $\theta = Arg z.$ (the prinicipal branch). This is not defined at $z = 3,$ therefore
+\[
+    -\frac{\pi}{2} < \theta < \frac{\pi}{2}.
+\]
+The antiderivative of $z^{1/2}$ becomes 
+\[
+    \frac{2}{3} z^{3/2} = \frac{2}{3}\abs{z}^{3/2}e^{i3\theta/2}.
+\]
+This gives 
+\[
+    \int_{C} z^{1/2}\,dz = 2\sqrt{3}(1 + i).
+\]
+
+\begin{exmp}
+    \[
+        \int_{0}^{\pi + 2i} \cos\frac{z}{2}\,dz.
+    \]
+\end{exmp}
+As discussed in the next section the complex trignometric functions $\sin$ $\cos$ and $\tan$ are well defined and can be differentiated in $\mathbb{C}.$ Therefore, 
+\[
+    \frac{d}{dz} 2\sin\frac{z}{2} = \cos\frac{z}{2}.
+\]
+This gives
+\begin{align*}
+    \int_{0}^{\pi + 2i} \cos\frac{z}{2}\,dz
+        &=
+            2\sin\left(\frac{\pi}{2} + i\right) - 0 \\
+        &=
+            2\sin\left(\frac{\pi}{2} + i\right).
+\end{align*}
+
+We now state a fundamental theorem for contour integrals.
+\begin{thm}[Cauchy-Goursat]
+    If a function $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ is analytic at all points interior to a simple closed contour $C,$ then
+    \[
+        \int_{C} f(z)\,dz = 0.
+    \]
+\end{thm}
+\begin{proof}
+    The following proof is due to \cite{Stein2003}. The first part of the proof utilises an interesting inductive process. To this end we consider a triangle in the interior of $C,$ that is positively oriented. The triangle is divided iteratively, using the midpoints of each side as shown in the figures given below.
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}{0.30\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{./figs/chapter_2/sierpinski_0.eps}
+            \caption{The original triangle}
+        \end{subfigure}
+        \qquad
+        \begin{subfigure}{0.30\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{./figs/chapter_2/sierpinski_1.eps}
+            \caption{First iteration.}
+        \end{subfigure}
+        \qquad
+        \begin{subfigure}{0.30\textwidth}
+            \centering
+            \includegraphics[width = \textwidth]{./figs/chapter_2/sierpinski_2.eps}
+            \caption{Second iteration.}
+        \end{subfigure}
+        \caption{Successive divisions of the triangle inside the domain defined by the contour $C.$}
+    \end{figure}
+    {\color{red} TODO: Complete proof}
+\end{proof}
+
+The above theorem allows us to prove the following Cauchy-Integral theorem, which \textit{integral} to the say the least. 
+\begin{thm}[Cauchy Integral Formula]
+    Let $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ be analytic everywhere inside a simple closed contour $C,$ positively oriented. If $z_0 \in \mathbb{C},$ is interior to the contour, then 
+    \[
+        f(z_0) = \frac{1}{2\pi i} \int_{C} \frac{f(z)}{z - z_0}\,dz.
+    \]
+\end{thm}
+\begin{proof}
+    Let $C_{\rho}: S(z_0, \rho)$ where $\rho$ is small enough to allow $C_{\rho} \subset C.$ This means that $\frac{f(z_0)}{z - z_0}$ is analytic between and on the contours $C$ and $C_{\rho}.$ Consider the path $\gamma,$ on which, according to the Cauchy-Goursat theorem [$\because z_0$ is interior to $\gamma$], 
+    \[
+        \int_{\gamma} \frac{f(z)}{z - z_0} = 0.
+    \]
+    This implies
+    \[
+        \int_{B \rightarrow A} \frac{f(z)}{z - z_0}\,dz + \int_{A \rightarrow D} \frac{f(z)}{z - z_0}\,dz + \int_{B\rightarrow C} \frac{f(z)}{z - z_0}\,dz + \int_{C \rightarrow B} \frac{f(z)}{z - z_0}\,dz = 0.
+    \]
+    As the point $B$ approaches $C$ (and consequently $A$ appraoches $D$), the above experssion reduces to  
+    \[
+        \int_{B \rightarrow A} \frac{f(z)}{z - z_0}\,dz - \int_{B \rightarrow A} \frac{f(z)}{z - z_0}\,dz + \int_{C} \frac{f(z)}{z - z_0}\,dz - \int_{C_{\rho}} \frac{f(z)}{z - z_0}\,dz = 0.
+    \]
+    Therefore,
+    \[
+        \int_{C} frac{f(z)}{z - z_0}\,dz = \int_{C_{\rho}} frac{f(z)}{z - z_0}\,dz.
+    \]
+    Finally, consider the value
+    \begin{align*}
+        \abs{\int_{C} - 2\pi i f(z_0)}
+            &=
+                \abs{\int_{C} \frac{f(z)}{z - z_0}\,dz - \int_{C_{\rho}}\frac{f(z_0)}{z - z_0}\,dz} \\
+            &=
+                \abs{\int_{C_{\rho}}\frac{f(z) - f(z_0)}{z - z_0}\,dz}.
+    \end{align*}
+    Now since $f$ is analytic at $z_0,$ it is continuous there and $\forall \epsilon > 0 \;\exists\; \delta > 0: d(z, z_0) < \delta \Rightarrow d(f(z), f(z_0)) < \epsilon.$ We may choose $\rho < \delta$ such that 
+    \[
+        \abs{\int_{C_{\rho}}\frac{f(z) - f(z_0)}{z - z_0}\,dz} \leq \frac{\epsilon}{\rho} 2\pi\rho = 2\pi \epsilon.
+    \]
+    Since $\epsilon > 0$ is arbitrary,
+    \[
+        \int_{C} \frac{f(z)}{z - z_0}\,dz = 2\pi i f(z_0).
+    \]
+    It is to be noted that if $C_{\rho}: z(t) = \rho e^{it} + z_0, 0 \leq t \leq 2\pi,$ then
+    \[
+        \int_{C_{\rho}} \frac{dz}{z - z_0} = \int_{0}^{2\pi}\frac{i\rho}{\rho e^{it}}e^{it}\,dt = 2\pi i.
+    \]
+\end{proof}
+
+\begin{thm}
+    Let $f: X \subseteq \mathbb{C} \rightarrow \mathbb{C}$ be analytic everywhere inside a simple closed contour $C,$ positively oriented. If $z_0 \in \mathbb{C},$ is interior to the contour, then
+    \[
+        \int_{C} \frac{dz}{(z - z_0)^{n + 1}} = \frac{2\pi i}{n!}\frac{d^{n}}{dz}f(z_{0}).
+    \]
+\end{thm}
+\begin{proof}
+    The following proof uses induction on $n.$ 
+
+    \noindent \textbf{Base Case:} $\textbf{n = 1}.$ Due to  \thmref{2.2.34}, we have 
+    \[
+        f(z) = \frac{1}{2\pi i} \int_{C} \frac{f(s)}{s - z}\,ds.
+    \]
+    We define $d := \inf\{ d(s, z) : s \in C\}.$ Now, we consider 
+    \begin{align*}
+        \frac{f(z + \Delta z) - f(z)}{\Delta z}
+            &=
+                \frac{1}{2\pi i (\Delta z)} \int_{C} \frac{f(s)}{s - z - \Delta z} - \frac{f(s)}{s - z}\,ds \\
+            &=
+                \frac{1}{2\pi i (\Delta z)} \int_{C} \frac{f(s)\Delta z}{(s - z - \Delta z) (s - z)}\,ds, \\
+    \end{align*}
+    for $0 < \abs{\Delta z} < d.$ Further,
+    \begin{align*}
+        \abs{\frac{f(z + \Delta z) - f(z)}{\Delta z} - \frac{1}{2\pi i} \int_{C} \frac{f(s)}{(s - z)^2}\,ds}
+            &=
+                \abs{\frac{1}{2\pi i} \int_{C} \frac{f(s) \Delta z}{(s - z - \Delta z)(s - z)^2}\,ds}\\
+            &\leq
+                \frac{L}{2\pi} \frac{\abs{\Delta z}M}{(d - \abs{\Delta z})d^2},
+    \end{align*}
+    where we have used the fact that $\exists \; M > 0: \abs{f(s)} < M, \forall s \;\text{on}\; C$ (because $f$ is analytic in and on $C$) and the that $\abs{s - z - \Delta z} \geq \abs{\abs{s - z} - \abs{\Delta{z}}} \geq d - \abs{\Delta z}$. Also, $L$ is the length of the contour. Now, as $\Delta z \rightarrow 0$
+    \[
+        \frac{f(z + \Delta z) - f(z)}{\Delta z} \rightarrow \frac{1}{2\pi i} \int_{C} \frac{f(s)}{(s - z)^2}\,ds.
+    \]
+    The same arguments hold for $n = k + 1,$ where the statement is assumed to be true for $n = k$ for some $k \in \mathbb{N}.$ By the principle of mathematical induction, the proof ends here. \\
+    {\color{red} TODO: More detail in proof.} 
+\end{proof}
+
+\begin{exmp}
+    \[
+        \int_{C} \frac{1}{z^4}\,dz,
+    \]
+    where $C: \abs{z} = 1.$
+\end{exmp}
+The integral evaluates to 
+\[
+    \frac{2\pi i}{3!} \left.\frac{d}{dz}\right\rvert_{z = 0}\frac{1}{z^4} = \frac{8}{3} \pi i.
+\]
+
+
 
 \section{Special Functions}
 \subsection{Exponential}
